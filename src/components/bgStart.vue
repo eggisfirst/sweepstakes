@@ -6,7 +6,6 @@
 
 <script>
 import '../js/bgStart'
-// import '../js/three.min'
 export default {
   data() {
     return {

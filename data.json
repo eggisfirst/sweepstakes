@@ -1,0 +1,37 @@
+{
+  "seller": {
+    "name" : "粥品香坊",
+    "score": 4.2,
+    "price": 15,
+    "photos":[
+      "./static/image/icon1.jpeg",
+      "./static/image/icon2.jpeg",
+      "./static/image/icon3.jpeg",
+      "./static/image/icon4.jpeg",
+      "./static/image/icon5.jpeg",
+      "./static/image/icon6.jpeg",
+      "./static/image/icon7.jpeg",
+      "./static/image/icon8.jpeg",
+      "./static/image/icon9.jpeg",
+      "./static/image/icon10.jpeg",
+      "./static/image/icon11.jpeg",
+      "./static/image/icon12.jpeg",
+      "./static/image/icon13.jpeg",
+      "./static/image/icon14.jpeg",
+      "./static/image/icon15.jpeg",
+      "./static/image/icon16.jpeg",
+      "./static/image/icon17.jpeg",
+      "./static/image/icon18.jpeg",
+      "./static/image/icon19.jpeg",
+      "./static/image/icon20.jpeg",
+      "./static/image/icon21.jpeg",
+      "./static/image/icon22.jpeg",
+      "./static/image/icon23.jpeg",
+      "./static/image/icon24.jpeg",
+      "./static/image/icon25.jpeg",
+      "./static/image/icon26.jpeg",
+      "./static/image/icon27.jpeg",
+      "./static/image/icon28.jpeg"
+    ]
+  }
+}

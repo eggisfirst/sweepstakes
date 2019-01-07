@@ -1,4 +1,3 @@
-// import {THREE} from './three.min.js'
 import {TweenLite} from "gsap";
 var THREE = require("three-js")()
 /* globals THREE, console */

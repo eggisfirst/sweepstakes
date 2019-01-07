@@ -2,18 +2,33 @@
   <div class="container">
     <div class="bubble-wrap">
       <div 
-        v-for="i in 100" :key="i"  
+        v-for="(item, index) in img" :key="index"  
         class="bubble"
-        :style="{'backgroundImage': `url(../../static/image/icon${i}.jpeg)`}"></div>
+        :style="{'backgroundImage': `url(${item})`}"></div>
     </div>
 </div>
 </template>
 
 <script>
+import {IndexModel} from '../utils/index'
+const indexModel = new IndexModel()
+import axios from 'axios' 
+
 export default {
   data() {
     return {
-      img:'../../static/image/icon1.jpeg'
+      img: []
+    }
+  },
+  created() {
+    this._getData()
+  },
+  methods: {
+    _getData() {
+      indexModel.getTitleList().then(res => {
+        console.log(res.data)
+        this.img = res.data.photos
+      })
     }
   }
 }
