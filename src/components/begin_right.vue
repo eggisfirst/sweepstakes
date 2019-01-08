@@ -147,7 +147,7 @@ export default {
     bottom: 5.6%;
   }
   .empty_icon{
-    width: 2%;
+    width: 2.5%;
     height: 15px;
     position: absolute;
     bottom: 6%;
