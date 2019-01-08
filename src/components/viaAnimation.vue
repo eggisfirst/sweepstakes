@@ -46,7 +46,7 @@ body {
 
 @keyframes move {
   100% {
-    transform: translate3d(-100px, -100px, 1000px);
+    transform: translate3d(-100px, -50px, 1000px);
   }
 }
 .container {
@@ -58,31 +58,32 @@ body {
 }
 .bubble-wrap {
   margin: auto;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   transform-style: preserve-3d;
   transform-origin: center center;
   perspective: 600px;
 }
 .bubble {
   position: absolute;
-  // background: black;
-  opacity: .7;
+  opacity: 1;
   border-radius: 50%;
   animation: move 3s infinite;
-  
+  // border: 1px solid #e28902;
 }
 
-@for $i from 1 through 100 {
+@for $i from 1 through 500 {
   .bubble:nth-child(#{$i}){
-     $size: random(30)+px;
+     $size: random(25)+px;
      height: $size;
      width: $size;
-     animation-delay: -$i * .1s;
+     animation-delay: -$i * .2s;
      transform: translate3d( (random(200) * 1px),  (random(200) * 1px), (random(400) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
     //  background-image:url(../assets/image/icon1.jpeg); 
-     background-size: 100% 100%;
+     background-size: 200% 200%;
+     background-position: center;
+     background-repeat: no-repeat;
   }
  
 }
