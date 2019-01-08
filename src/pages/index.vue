@@ -10,6 +10,9 @@
     <div class="content" v-show="content">
       <begin-page/>
     </div>
+    <div class="award_person" v-show="award_person">
+      <award-person/>
+    </div>
     <div class="clean_components" v-show="false">
       <clean-data/>
     </div>
@@ -24,13 +27,15 @@ import BgStart from '../components/bgStart'
 import ViaAnimation from '../components/viaAnimation'
 import BeginPage from '../components/beginPage'
 import CleanData from '../components/cleanData'
+import AwardPerson from '../components/awardPerson'
 
 export default {
-  components: { BgStart, ViaAnimation, BeginPage, CleanData },
+  components: { BgStart, ViaAnimation, BeginPage, CleanData, AwardPerson },
   data () {
     return {
       Lottery: true,
-      content: false
+      content: false,
+      award_person: false
     }
   },
   computed: {
@@ -46,7 +51,11 @@ export default {
         let _key = window.event.keyCode;
         if(_key === 32){
           this.Lottery = false
-          this.content = true
+          this.award_person = true
+          setTimeout(() => {
+            this.award_person = false
+            this.content = true
+          }, 2000);
         }
       }
     }
@@ -87,6 +96,13 @@ export default {
     height: 67.2%;
     margin: auto;
     margin-top: 9px;
+  }
+  .award_person{
+    width: 68%;
+    // border: 1px solid red;
+    // height: 67.2%;
+    margin: auto;
+    margin-top: 6vw;
   }
   .clean_components {
     position: absolute;
