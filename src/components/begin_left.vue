@@ -1,30 +1,66 @@
 <template>
   <div class="left">
     <div class="left_top">
-      <span class="awards">一等奖</span>
-      <span class="awards_number">（ 3名 ）</span>
-      <p class="awards_name">iphone Xs Max</p>
+      <span class="awards">{{ awardName.award }}</span>
+      <span class="awards_number">({{ awardName.winNum }}名)</span>
+      <p class="awards_name">{{ awardName.prize }}</p>
     </div>
     <div class="left_content">
       <div class="left_content_bg">
-        <img src="../assets/image/award_icon.png" alt="奖品图片">
+        <!-- <img :src="`${ awardName.prizePicture }`" alt="奖品图片"> -->
       </div>
     </div>
     <div class="control_num">
-      <button class="cut_down"></button>
+      <button class="cut_down" @click="cutDown"></button>
       <span class="num_text">人数</span>
       <span class="num_bg">
-        <div class="num">1</div>
+        <div class="num">{{ num }}</div>
       </span>
-      <button class="add"></button>
+      <button class="add" @click="add"></button>
     </div>
-    <div class="begin_btn"></div>
+    <div class="begin_btn" @click="beginBtn"></div>
   </div>
 </template>
 
 <script>
+import Vuex,{ mapMutations, mapState } from 'vuex'
+import awardName from '../store/modules/awardName';
+import {IndexModel} from '../utils/index'
+const indexModel = new IndexModel() 
+import axios from 'axios' 
+
 export default {
-  
+  computed: {
+    ...mapState({
+      awardName: state => state.awardName.awardName
+    })
+  },
+  data() {
+    return {
+      num: 1
+    }
+  },
+  methods: {
+    //抽奖人数选择
+    add() {
+      if(this.num < this.awardName.winNum) {
+        this.num += 1
+      }
+    },
+    cutDown() {
+      if(this.num > 1) {
+        this.num -= 1
+      }
+    },
+    //点击开始抽奖
+    beginBtn() {
+      let prizeId = this.awardName.id
+      let drawNum = this.num
+      indexModel.getDrawLottery(prizeId, drawNum).then(res => {
+        console.log(111,res)
+      })
+    }
+  }
 }
 </script>
 

@@ -17,8 +17,9 @@ export default {
   components: { BeginLeft, BeginRight },
   data() {
     return {
-
     }
+  },
+  mounted() {
   }
 }
 </script>

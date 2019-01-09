@@ -6,7 +6,7 @@
     </div>
     <div class="right_content">
       <ul>
-        <li v-for="(item, index) in 3" :key="index" 
+        <li v-for="(item, index) in 0" :key="index" 
           @mouseover="delete_show(index)"
           @mouseout="delete_hide(index)">
           <div class="content_photo">

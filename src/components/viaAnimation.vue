@@ -4,15 +4,16 @@
       <div 
         v-for="(item, index) in img" :key="index"  
         class="bubble"
-        :style="{'backgroundImage': `url(${item})`}"></div>
+        :style="{'backgroundImage': `url(${item.headPortrait})`}"></div>
     </div>
 </div>
 </template>
 
 <script>
+import Vuex,{ mapMutations, mapState } from 'vuex'
 import {IndexModel} from '../utils/index'
 const indexModel = new IndexModel()
-import axios from 'axios' 
+
 
 export default {
   data() {
@@ -20,16 +21,29 @@ export default {
       img: []
     }
   },
+  computed: {
+    ...mapState({
+      awardName: state => state.awardName.awardName
+    })
+  },
   created() {
-    this._getData()
+    // this._getData()
+    // this.getAwards()
+    this.getAllUser()
+    // this.getData()
   },
   methods: {
-    _getData() {
-      indexModel.getTitleList().then(res => {
-        console.log(res.data)
-        this.img = res.data.photos
+    getAllUser() {
+      // let id = this.awardName.lotteryId
+      // indexModel.getAllUser(id).then(res => {
+      //   console.log(123,res)
+      // })
+      let id = 1
+      indexModel.getMockAllUser(id).then(res => {
+        this.img = res.data
       })
     }
+
   }
 }
 </script>
