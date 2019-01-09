@@ -1,13 +1,14 @@
 <template>
   <div class="left">
     <div class="left_top">
-      <span class="awards">{{ awardName.award }}</span>
-      <span class="awards_number">({{ awardName.winNum }}名)</span>
-      <p class="awards_name">{{ awardName.prize }}</p>
+      <span class="awards">{{ awardName.award || '一等奖'}}</span>
+      <span class="awards_number">({{ awardName.winNum || '3'}}名)</span>
+      <p class="awards_name">{{ awardName.prize || 'iphone XS Max'}}</p>
     </div>
     <div class="left_content">
       <div class="left_content_bg">
-        <!-- <img :src="`${ awardName.prizePicture }`" alt="奖品图片"> -->
+        <img :src="`${ awardName.prizePicture }`" v-show="imgShow">
+        <img src="../assets/image/award_photo.png" v-show="!imgShow">
       </div>
     </div>
     <div class="control_num">
@@ -37,7 +38,13 @@ export default {
   },
   data() {
     return {
-      num: 1
+      num: 1,
+      imgShow: false
+    }
+  },
+  created() {
+    if(this.awardName.prizePicture) {
+      this.imgShow = true
     }
   },
   methods: {
@@ -93,7 +100,7 @@ export default {
       background-color: #e4b54a;
       text-align: center;
       img{
-        width: 80%;
+        width: 58%;
         margin-top: -2vw;
       }
     }

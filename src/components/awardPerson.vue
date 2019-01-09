@@ -41,6 +41,11 @@ export default {
     li {
       width: 18%;
       margin-top: 3vw;
+       @-webkit-keyframes myMove1 {
+            0% {width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
+            50% {width: 110%;padding-top: 110%;background: rgba(226, 208, 128, 0.5);}
+            100%{width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
+        }  
       .content_photo{
         position: relative;
         width: 100%;
@@ -49,6 +54,12 @@ export default {
         border-radius: 100%;
         background: rgba(219, 139, 0, 0.19);
         margin-bottom: 8px;
+        -webkit-animation: myMove1 0.5s  infinite ;
+        @-webkit-keyframes  changeColor{
+          0% {border-color: #d78200}
+          50% {border-color: #FFD700}
+          100%{border-color: #d78200}
+        } 
         .photo_wrapper{
           border: 2px dotted #d78200;
           width: 94%;
@@ -59,6 +70,8 @@ export default {
           left: 3%;
           top: 2%;
           box-sizing: border-box;
+          -webkit-animation: changeColor 1s linear infinite ;
+
           .photo{
             position: absolute;
             top: 5%;

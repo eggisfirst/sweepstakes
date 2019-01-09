@@ -30,7 +30,6 @@ export default {
     // this._getData()
     // this.getAwards()
     this.getAllUser()
-    // this.getData()
   },
   methods: {
     getAllUser() {

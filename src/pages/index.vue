@@ -7,15 +7,15 @@
     <div class="viaContainer" v-show="Lottery">
       <ViaAnimation/>
     </div>
-    <transition 
+    <!-- <transition 
       enter-active-class="animated bounceInDown"
       leave-active-class="animated bounceOutRight"
-      >
-      <!-- <transition
+      > -->
+      <transition
       v-bind:css="false"
       v-on:before-enter="contBeforeEnter"
       v-on:enter="contEnter"
-      v-on:leave="contLeave"> -->
+      v-on:leave="contLeave">
       <div class="content" v-show="content">
         <begin-page/>
       </div>
@@ -53,13 +53,13 @@ const indexModel = new IndexModel()
 import animation from 'animate.css'
 import  Velocity from 'velocity-animate'
 import {awardBeforeEnter, awardEnter, awardLeave} from '../utils/my-animation'
-// import {contentBeforeEnter, contentEnter, contentLeave} from '../utils/my-animation'
+import {contentBeforeEnter, contentEnter, contentLeave} from '../utils/my-animation'
 export default {
   components: { BgStart, ViaAnimation, BeginPage, CleanData, AwardPerson },
   data () {
     return {
-      Lottery: false,
-      content: true,
+      Lottery: true,
+      content: false,
       award_person: false,
       stompClient: '',
       award: ''
@@ -71,9 +71,9 @@ export default {
     })
   },
   mounted() {
-    // this.stopLottery()
+    this.stopLottery()
     // this.initWebSocket()
-    this._getData()
+    // this._getData()
   },
   methods: {
     ...mapMutations(['setAwardName']),
@@ -110,10 +110,10 @@ export default {
           
           setTimeout(() => {
             this.award_person = false
-          }, 4000);
+          }, 3000);
            setTimeout(() => {
             this.content = true
-          }, 5000);
+          }, 3200);
         }
       }
     },
@@ -126,15 +126,17 @@ export default {
     leave(el, done) {
       awardLeave(el, done)
     },
-    // contBeforeEnter(el) {
-    //   contentBeforeEnter(el)
-    // },
-    // contEnter(el, done) {
-    //   contentEnter(el, done)
-    // },
-    // contLeave(el, done) {
-    //   contentLeave(el, done)
-    // }
+    contBeforeEnter(el) {
+      el.style.opacity = 0
+      el.style.scale = 0
+      contentBeforeEnter(el)
+    },
+    contEnter(el, done) {
+      contentEnter(el, done)
+    },
+    contLeave(el, done) {
+      contentLeave(el, done)
+    }
   }
   
 }
