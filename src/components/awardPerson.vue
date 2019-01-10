@@ -29,7 +29,7 @@ export default {
     })
   },
   mounted() {
-    console.log(this.awardList)
+    console.log(123,this.awardList)
   },
   methods: {
 
