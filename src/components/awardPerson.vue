@@ -1,11 +1,12 @@
 <template>
   <div class="awardPerson">
     <ul>
-      <li v-for="i in 5" :key="i">
+      <li v-for="(item, index) in list" :key="index">
         <div class="content_photo">
           <div class="photo_wrapper">
             <div class="photo">
-              <img src="../assets/image/photo.jpeg" alt="">
+              <!-- <img src="../assets/image/photo.jpeg" alt=""> -->
+              <img :src="`${item.headPortrait}`" alt="">
             </div>
           </div>
         </div>
@@ -20,7 +21,7 @@ import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
   data() {
     return {
-
+      list: []
     }
   },
   computed: {
@@ -28,11 +29,21 @@ export default {
       awardList: state => state.awardList.awardList
     })
   },
-  mounted() {
-    console.log(123,this.awardList)
+  watch: {
+    awardList() {
+      this.setAwardList()
+    }
   },
   methods: {
-
+    setAwardList() {
+      if(this.awardList.length > 10) {
+        for(var i = 0; i < 10; i++) {
+          this.list.push(this.awardList[i])
+        }
+      }else {
+        this.list = this.awardList
+      }
+    }
   }
 }
 </script>
@@ -53,9 +64,9 @@ export default {
             //  0% {background: rgba(66, 52, 26, 0.19)}
             // 50% {border: 14px solid rgba(80, 80, 48, 0.89)}
             // 100%{border: 5px solid rgba(49, 49, 30, 0.89)}
-            0% {width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
-            50% {width: 110%;padding-top: 110%;background: rgba(226, 208, 128, 0.5);}
-            100%{width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
+            // 0% {width: 100%;padding-top: 100%}
+            // 50% {width: 120%;padding-top: 120%}
+            // 100%{width: 100%;padding-top: 100%}
         }  
       .content_photo{
         position: relative;
@@ -81,7 +92,7 @@ export default {
           left: 3%;
           top: 2%;
           box-sizing: border-box;
-          -webkit-animation: changeColor 1s linear infinite ;
+          // -webkit-animation: changeColor 1s linear infinite ;
 
           .photo{
             position: absolute;

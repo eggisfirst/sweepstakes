@@ -6,19 +6,20 @@
     </div>
     <div class="right_content">
       <ul>
-        <li v-for="(item, index) in 0" :key="index" 
+        <li v-for="(item, index) in list" :key="index" 
           @mouseover="delete_show(index)"
           @mouseout="delete_hide(index)">
           <div class="content_photo">
             <div class="photo_wrapper">
               <div class="photo">
-                <img src="../assets/image/photo.jpeg" alt="">
+                <!-- <img src="../assets/image/photo.jpeg" alt=""> -->
+                <img :src="`${ item.headPortrait }`" alt="">
               </div>
             </div>
             <div class="delete_icon" v-show="isShow === index? true : false"></div>
           </div>
-          <p class="content_name">amy</p>
-          <p class="content_num">11609878</p>
+          <p class="content_name">{{ item.name }}</p>
+          <p class="content_num">{{ item.number }}</p>
         </li>
       </ul>
     </div>
@@ -31,14 +32,38 @@
 
 <script>
 import TurnPage from './turnPage'
+import Vuex,{ mapMutations, mapState } from 'vuex'
+import awardName from '../store/modules/awardName';
 export default {
   components: { TurnPage },
   data() {
     return {
-      isShow: -1
+      isShow: -1,
+      list: []
+    }
+  },
+  computed: {
+    ...mapState({
+      awardList: state => state.awardList.awardList,
+      awardName: state => state.awardName.awardName,
+      awardContent: state => state.awardContent.awardContent,
+      beginLock: state => state.beginLock.beginLock
+    })
+  },
+  watch: {
+    awardName() {
+      this.list = []
+    },
+    beginLock() {
+      if(this.beginLock) {
+        this.list = []
+      }else {
+        this.list = this.awardList
+      }
     }
   },
   methods: {
+    ...mapMutations(['setAwardList']),
     //删除图标的显示隐藏
     delete_show(index) {
       this.isShow = index

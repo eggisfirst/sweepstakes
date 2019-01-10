@@ -1,13 +1,13 @@
 <template>
   <div class="left">
     <div class="left_top">
-      <span class="awards">{{ awardName.award || '一等奖'}}</span>
-      <span class="awards_number">({{ awardName.winNum || '3'}}名)</span>
-      <p class="awards_name">{{ awardName.prize || 'iphone XS Max'}}</p>
+      <span class="awards">{{ list.award || '一等奖'}}</span>
+      <span class="awards_number">({{ list.winNum || '3'}}名)</span>
+      <p class="awards_name">{{ list.prize || 'iphone XS Max'}}</p>
     </div>
     <div class="left_content">
       <div class="left_content_bg">
-        <img :src="`${ awardName.prizePicture }`" v-show="imgShow">
+        <img :src="`${ list.prizePicture }`" v-show="imgShow">
         <img src="../assets/image/award_photo.png" v-show="!imgShow">
       </div>
     </div>
@@ -36,10 +36,16 @@ export default {
       awardName: state => state.awardName.awardName
     })
   },
+  watch: {
+    awardName() {
+      this.list = this.awardName
+    }
+  },
   data() {
     return {
       num: 1,
-      imgShow: false
+      imgShow: false,
+      list: {}
     }
   },
   created() {

@@ -61,7 +61,7 @@ export default {
     return {
       Lottery: false,
       content: true,
-      award_person: false,
+      award_person: true,
       stompClient: '',
       award: ''
     }
@@ -74,8 +74,17 @@ export default {
       awardPerson: state => state.awardPerson.awardPerson
     })
   },
+  watch: {
+    awardContent() {
+      if(!this.awardContent) {
+        this.stopLottery()
+      }
+    },
+    awardName() {
+      // this.connection()
+    }
+  },
   mounted() {
-    this.stopLottery()
     // this.initWebSocket()
     this._getData()
   },
@@ -119,10 +128,10 @@ export default {
           this.setBeginLock(false)
           this.setAwardPerson(true)
           setTimeout(() => {
-            // this.award_person = false
+            this.setAwardPerson(false)
           }, 3000);
            setTimeout(() => {
-            // this.setAwardContent(true)
+            this.setAwardContent(true)
           }, 3200);
         }
       }
@@ -189,11 +198,15 @@ export default {
   }
   
   .award_person{
+    position: absolute;
+    left: 16%;
+    top: 30%;
+    // margin-left: -34%;
     width: 68%;
     // border: 1px solid red;
     // height: 67.2%;
-    margin: auto;
-    margin-top: 6vw;
+    // margin: auto;
+    // margin-top: 6vw;
   }
   .clean_components {
     position: absolute;
