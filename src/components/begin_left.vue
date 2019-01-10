@@ -48,6 +48,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setBeginLock', 'setAwardContent', 'setAwardList']),
     //抽奖人数选择
     add() {
       if(this.num < this.awardName.winNum) {
@@ -63,9 +64,16 @@ export default {
     beginBtn() {
       let prizeId = this.awardName.id
       let drawNum = this.num
-      indexModel.getDrawLottery(prizeId, drawNum).then(res => {
-        console.log(111,res)
-      })
+      if(drawNum > this.awardName.winNum) {
+        alert('输入人数大于该奖项剩余名额')
+      }else {
+        this.setAwardContent(false)
+        this.setBeginLock(true)
+        indexModel.getDrawLottery(prizeId, drawNum).then(res => {
+          console.log(111,res.data)
+          this.setAwardList(res.data)
+        })
+      }
     }
   }
 }

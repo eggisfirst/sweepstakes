@@ -4,36 +4,37 @@
       <img src="../assets/image/topBar.png" alt="">
     </div>
     <bg-start/>
-    <div class="viaContainer" v-show="Lottery">
+    <div class="viaContainer" v-show="beginLock">
       <ViaAnimation/>
     </div>
-    <!-- <transition 
-      enter-active-class="animated bounceInDown"
-      leave-active-class="animated bounceOutRight"
-      > -->
       <transition
       v-bind:css="false"
       v-on:before-enter="contBeforeEnter"
       v-on:enter="contEnter"
       v-on:leave="contLeave">
-      <div class="content" v-show="content">
+      <div class="content" v-show="awardContent">
         <begin-page/>
       </div>
     </transition>
-    <transition 
+     <transition 
+      enter-active-class="animated fadeInUpBig"
+      leave-active-class="animated fadeOut"
+      v-show="awardPerson"
+      >
+    <!-- <transition 
       v-bind:css="false"
       v-on:before-enter="beforeEnter"
       v-on:enter="enter"
       v-on:leave="leave"
-      >
-      <div class="award_person" v-show="award_person">
-        <award-person/>
+      > -->
+      <div class="award_person" v-show="awardPerson">
+        <award-person />
       </div>
     </transition>
     <div class="clean_components" v-show="false">
       <clean-data/>
     </div>
-    <div class="footer" v-show="Lottery">
+    <div class="footer" v-show="beginLock">
       <span>按空格键停止</span>
     </div>  
   </div>
@@ -58,8 +59,8 @@ export default {
   components: { BgStart, ViaAnimation, BeginPage, CleanData, AwardPerson },
   data () {
     return {
-      Lottery: true,
-      content: false,
+      Lottery: false,
+      content: true,
       award_person: false,
       stompClient: '',
       award: ''
@@ -67,21 +68,24 @@ export default {
   },
   computed: {
     ...mapState({
-      awardName: state => state.awardName.awardName
+      awardName: state => state.awardName.awardName,
+      beginLock: state => state.beginLock.beginLock,
+      awardContent: state => state.awardContent.awardContent,
+      awardPerson: state => state.awardPerson.awardPerson
     })
   },
   mounted() {
     this.stopLottery()
     // this.initWebSocket()
-    // this._getData()
+    this._getData()
   },
   methods: {
-    ...mapMutations(['setAwardName']),
-    _getData() {
-      indexModel.getTitleList().then(res => {
-        this.setAwardName(res.data)
-      })
-    },
+    ...mapMutations([
+      'setAwardName',
+      'setBeginLock',
+      'setAwardContent',
+      'setAwardPerson'
+    ]),
     // initwebsocket
     initWebSocket() {
       if(this.stompClient.connected !== true) {
@@ -100,24 +104,32 @@ export default {
         });
       });
     },
+      //获取奖品信息
+    _getData() {
+      indexModel.getAwardList().then(res => {
+        this.setAwardName(res.data)
+      })
+    },
     //停止抽奖
     stopLottery() {
       document.onkeydown = (e) => {
         let _key = window.event.keyCode;
         if(_key === 32){
-          this.Lottery = false
-          this.award_person = true
-          
+          // this.Lottery = false
+          this.setBeginLock(false)
+          this.setAwardPerson(true)
           setTimeout(() => {
-            this.award_person = false
+            // this.award_person = false
           }, 3000);
            setTimeout(() => {
-            this.content = true
+            // this.setAwardContent(true)
           }, 3200);
         }
       }
     },
     beforeEnter(el) {
+      el.style.opacity = 0
+      el.style.scale = 0
       awardBeforeEnter(el)
     },
     enter(el, done) {

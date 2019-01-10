@@ -11,3 +11,8 @@ Mock.mock('/good/users',{
   codeMsg: 'success',
   data: data.users
 })
+Mock.mock('/good/list',{
+  code: 0,
+  codeMsg: 'success',
+  data: data.list
+})

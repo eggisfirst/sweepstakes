@@ -3,7 +3,7 @@
     "id":1,  
     "lotteryId":1,
     "award": "一等奖", 
-    "winNum": 5, 
+    "winNum": 3, 
     "prize": "iphone xs max",
     "prizePicture":
       "./static/image/icon1.jpeg"
@@ -58,7 +58,20 @@
       "name": "XXX",   
       "number": "1134343"  
     }
-
+  ],
+  "list": [
+    {
+      "headPortrait": "./static/image/icon9.jpeg",  
+      "name": "XXX",   
+      "number": "1134343" ,
+      "id":"123" 
+    },
+    {
+      "headPortrait": "./static/image/icon10.jpeg",  
+      "name": "XXX",   
+      "number": "1134343",
+      "id":"123" 
+    }
   ]
   
 }

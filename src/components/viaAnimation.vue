@@ -32,11 +32,14 @@ export default {
     this.getAllUser()
   },
   methods: {
+    //获取抽奖用户列表
     getAllUser() {
-      // let id = this.awardName.lotteryId
-      // indexModel.getAllUser(id).then(res => {
-      //   console.log(123,res)
-      // })
+      // if(this.awardName.lotteryId) {
+      //   let id = this.awardName.lotteryId
+      //   indexModel.getAllUser(id).then(res => {
+      //     console.log(123,res)
+      //   })
+      // }
       let id = 1
       indexModel.getMockAllUser(id).then(res => {
         this.img = res.data

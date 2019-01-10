@@ -3,8 +3,8 @@
 function awardBeforeEnter(el){
   Velocity(el,
     { 
-      translateY:[0, 800],
-      translateX:[0, 800],
+      translateY:[0, 400],
+      translateX:[0, 400],
       opacity: 1,
       scale: 1,
     }, {
@@ -22,18 +22,18 @@ function awardEnter(el, done) {
   //   },
   //   {
   //     duration: 800,
-  //     complete : () => {
-  //       // Velocity(el,{
-  //       //   // opacity: 1,
-  //       //   // scale: 1,
-  //       //   // translateY:[0,200],
-  //       //   // rotateX: [-360, 360]
-  //       // },
-  //       //   {
-  //       //     // duration: 500
-  //       //   }
-  //       // )
-  //     },
+  //     // complete : () => {
+  //     //   Velocity(el,{
+  //     //     // opacity: 1,
+  //     //     // scale: 1,
+  //     //     // translateY:[0,200],
+  //     //     // rotateX: [-360, 360]
+  //     //   },
+  //     //     {
+  //     //       // duration: 500
+  //     //     }
+  //     //   )
+  //     // },
   //   }
   // )
 }

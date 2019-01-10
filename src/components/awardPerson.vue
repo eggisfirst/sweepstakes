@@ -16,12 +16,20 @@
 </template>
 
 <script>
-
+import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
   data() {
     return {
 
     }
+  },
+  computed: {
+    ...mapState({
+      awardList: state => state.awardList.awardList
+    })
+  },
+  mounted() {
+    console.log(this.awardList)
   },
   methods: {
 
@@ -42,6 +50,9 @@ export default {
       width: 18%;
       margin-top: 3vw;
        @-webkit-keyframes myMove1 {
+            //  0% {background: rgba(66, 52, 26, 0.19)}
+            // 50% {border: 14px solid rgba(80, 80, 48, 0.89)}
+            // 100%{border: 5px solid rgba(49, 49, 30, 0.89)}
             0% {width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
             50% {width: 110%;padding-top: 110%;background: rgba(226, 208, 128, 0.5);}
             100%{width: 100%;padding-top: 100%;background: rgba(219, 139, 0, 0.19);}
@@ -54,7 +65,7 @@ export default {
         border-radius: 100%;
         background: rgba(219, 139, 0, 0.19);
         margin-bottom: 8px;
-        -webkit-animation: myMove1 0.5s  infinite ;
+        -webkit-animation: myMove1 0.5s  infinite linear;
         @-webkit-keyframes  changeColor{
           0% {border-color: #d78200}
           50% {border-color: #FFD700}
