@@ -10,16 +10,33 @@
 
 <script>
 import Vuex,{ mapMutations, mapState } from 'vuex'
+import {IndexModel} from '../utils/index'
+const indexModel = new IndexModel()
+
 export default {
   data() {
     return {
 
     }
   },
+  computed: {
+    ...mapState({
+      awardList: state => state.awardList.awardList,
+      awardName: state => state.awardName.awardName
+    })
+  },
   methods: {
     ...mapMutations(['setAwardList', 'setEmptyShow']),
     emptyAll() {
       this.setAwardList([])
+
+      // let prizeId = this.awardName.id
+      // let userId = this.awardList[index].id
+      // indexModel.deleteLottery(prizeId, userId).then(res => {
+      //   if(res.status === 1) {
+      //     console.log(res.msg)
+      //   }
+      // })
       this.setEmptyShow(false)
     },
     disEmpty() {

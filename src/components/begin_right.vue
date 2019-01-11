@@ -85,6 +85,9 @@ export default {
     },
     //中奖列表
     awardList() {
+      if(this.awardList.length > 0) {
+        this.setData()
+      }
       if(this.awardList.length === 1) {
         this.liWidth = '35%'
         this.fontSize = '28px'
@@ -118,6 +121,7 @@ export default {
     },
     //处理翻页数据
     setData() {
+      console.log('setData', this.awardList)
       this.allPage = Math.ceil((this.awardList.length)/15)
       if(this.allPage > 1) {
         this.showTurnPage = true
@@ -142,6 +146,9 @@ export default {
       indexModel.deleteLottery(prizeId, userId).then(res => {
         if(res.status === 1) {
           console.log(res.msg)
+          let num = this.awardName.winNum
+          this.$set(this.awardName, 'winNum', num)
+          console.log('winNum',this.awardName.winNum)
         }
       })
     },

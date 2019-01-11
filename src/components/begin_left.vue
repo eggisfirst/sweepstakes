@@ -42,6 +42,9 @@ export default {
   watch: {
     awardName() {
       this.list = this.awardName
+      this.prizeId = this.list.id
+      this.allNum = this.list.winNum
+      this.imgShow = true
     },
     num() {
       this.num = parseInt(this.num)
@@ -51,7 +54,10 @@ export default {
     return {
       num: 1,
       imgShow: false,
-      list: {}
+      list: {},
+      drawNum: 0,
+      prizeId: '',
+      allNum: 0
     }
   },
   created() {
@@ -63,7 +69,7 @@ export default {
     ...mapMutations(['setBeginLock', 'setAwardContent', 'setAwardList']),
     //抽奖人数选择
     add() {
-      if(this.num < this.awardName.winNum) {
+      if(this.num < this.allNum) {
         this.num += 1 
       }
     },
@@ -74,16 +80,18 @@ export default {
     },
     //点击开始抽奖
     beginBtn() {
-      let prizeId = this.list.id
-      let drawNum = this.num
-      if(drawNum > this.list.winNum) {
+      this.drawNum = this.num
+      if(this.drawNum > this.allNum) {
         alert('输入人数大于该奖项剩余名额')
       }else {
         this.setAwardContent(false)
         this.setBeginLock(true)
-        indexModel.getDrawLottery(prizeId, drawNum).then(res => {
-          console.log(111,res.list)
+        indexModel.getDrawLottery(this.prizeId, this.drawNum).then(res => {
           this.setAwardList(res.list)
+          this.allNum = this.allNum - this.drawNum
+          if(res.status === 0 ) {
+            alert(res.msg)
+          }
         })
       }
     }

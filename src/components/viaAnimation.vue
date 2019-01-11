@@ -40,10 +40,9 @@ export default {
           console.log(123,res)
         })
       }
-      // let id = 1
-      // indexModel.getMockAllUser(id).then(res => {
-      //   this.img = res.data
-      // })
+      indexModel.getMockAllUser(1).then(res => {
+        this.img = res.data
+      })
     }
 
   }
