@@ -3,7 +3,7 @@
     <div class="left_top">
       <span class="awards">{{ list.award || '一等奖'}}</span>
       <span class="awards_number">({{ list.winNum || '3'}}名)</span>
-      <p class="awards_name">{{ list.prize || 'iphone XS Max'}}</p>
+      <p class="awards_name">{{ list.prize || 'iphone xs Max'}}</p>
     </div>
     <div class="left_content">
       <div class="left_content_bg">
@@ -15,7 +15,10 @@
       <button class="cut_down" @click="cutDown"></button>
       <span class="num_text">人数</span>
       <span class="num_bg">
-        <div class="num">{{ num }}</div>
+        <input  class="num"
+          type="number" 
+          v-model="num">
+        <!-- <div class="num">{{ num }}</div> -->
       </span>
       <button class="add" @click="add"></button>
     </div>
@@ -39,6 +42,9 @@ export default {
   watch: {
     awardName() {
       this.list = this.awardName
+    },
+    num() {
+      this.num = parseInt(this.num)
     }
   },
   data() {
@@ -58,7 +64,7 @@ export default {
     //抽奖人数选择
     add() {
       if(this.num < this.awardName.winNum) {
-        this.num += 1
+        this.num += 1 
       }
     },
     cutDown() {
@@ -155,6 +161,9 @@ export default {
         color: #fff;
         opacity: 0.2;
         font-size: 22.5px;
+        width: 100%;
+        // margin: 0;
+        // padding: 0
       }
     }
   }

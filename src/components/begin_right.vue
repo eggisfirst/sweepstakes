@@ -6,7 +6,9 @@
     </div>
     <div class="right_content">
       <ul>
-        <li v-for="(item, index) in list" :key="index" 
+        <li 
+          :style="{'width':`${liWidth}`}"
+          v-for="(item, index) in list" :key="index" 
           @mouseover="delete_show(index)"
           @mouseout="delete_hide(index)">
           <div class="content_photo">
@@ -18,15 +20,15 @@
             </div>
             <div class="delete_icon" v-show="isShow === index? true : false"></div>
           </div>
-          <p class="content_name">{{ item.name }}</p>
-          <p class="content_num">{{ item.number }}</p>
+          <p class="content_name" :style="{'fontSize':`${fontSize}`}">{{ item.name }}</p>
+          <p class="content_num" :style="{'fontSize':`${fontSize}`}">{{ item.number }}</p>
         </li>
       </ul>
     </div>
     <div class="control_page">
       <turn-page/>
     </div>
-    <div class="empty_icon"></div>
+    <div class="empty_icon" @click="isEmptyShow"></div>
   </div>
 </template>
 
@@ -39,15 +41,17 @@ export default {
   data() {
     return {
       isShow: -1,
-      list: []
+      list: [],
+      liWidth: '',
+      fontSize: ''
     }
   },
   computed: {
     ...mapState({
       awardList: state => state.awardList.awardList,
       awardName: state => state.awardName.awardName,
-      awardContent: state => state.awardContent.awardContent,
-      beginLock: state => state.beginLock.beginLock
+      awardContent: state => state.lock.awardContent,
+      beginLock: state => state.lock.beginLock
     })
   },
   watch: {
@@ -60,16 +64,39 @@ export default {
       }else {
         this.list = this.awardList
       }
+    },
+    awardList() {
+      if(this.awardList.length === 1) {
+        this.liWidth = '35%'
+        this.fontSize = '28px'
+      }else if(this.awardList.length === 3){
+        this.liWidth = '28%'
+        this.fontSize = '24px'
+      }else if(this.awardList.length >3 && this.awardList.length <= 15){
+        this.liWidth = '17%'
+        this.fontSize = '14px'
+      }else if(this.awardList.length > 15) {
+        this.liWidth = '17%'
+        this.fontSize = '14px'
+      }else if(this.awardList.length === 0) {
+        this.list = []
+      }
     }
   },
   methods: {
-    ...mapMutations(['setAwardList']),
+    ...mapMutations(['setAwardList', 'setEmptyShow']),
     //删除图标的显示隐藏
     delete_show(index) {
       this.isShow = index
     },
     delete_hide(index) {
       this.isShow = -1
+    },
+    //清空数据
+    isEmptyShow() {
+      this.setEmptyShow(true)
+    },
+    setData() {
     }
   }
 }
@@ -104,9 +131,9 @@ export default {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      margin-top: 1.6vw;
       li{
-        width: 30%;
-        margin-top: 1.6vw;
+        width: 20%;
         padding-right: 10px;
         .content_photo{
           position: relative;
@@ -161,7 +188,7 @@ export default {
           font-size: 14px;
           color: #ffa926;
           text-align: center;
-          line-height: 18px;
+          line-height: calc(fontSize);
         }
       }
     }

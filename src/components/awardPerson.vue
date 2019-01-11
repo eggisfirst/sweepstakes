@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     setAwardList() {
+      this.list = []
       if(this.awardList.length > 10) {
         for(var i = 0; i < 10; i++) {
           this.list.push(this.awardList[i])

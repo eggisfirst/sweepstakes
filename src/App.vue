@@ -84,7 +84,13 @@ button {
 input {
   border: none;
   background: none; }
-
+ input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type="number"]{
+        -moz-appearance: textfield;
+    }
 textarea {
   border: none;
   background: none;

@@ -31,7 +31,7 @@
         <award-person />
       </div>
     </transition>
-    <div class="clean_components" v-show="false">
+    <div class="clean_components" v-show="emptyShow">
       <clean-data/>
     </div>
     <div class="footer" v-show="beginLock">
@@ -69,9 +69,10 @@ export default {
   computed: {
     ...mapState({
       awardName: state => state.awardName.awardName,
-      beginLock: state => state.beginLock.beginLock,
-      awardContent: state => state.awardContent.awardContent,
-      awardPerson: state => state.awardPerson.awardPerson
+      beginLock: state => state.lock.beginLock,
+      awardContent: state => state.lock.awardContent,
+      awardPerson: state => state.lock.awardPerson,
+      emptyShow: state => state.lock.emptyShow
     })
   },
   watch: {

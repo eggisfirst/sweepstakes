@@ -2,15 +2,30 @@
   <div class="cleanData">
     <div class="clean_text">是否清除全部？</div>
     <div class="clean_btn">
-      <button class="btn_left">是</button>
-      <button class="btn_right">否</button>
+      <button class="btn_left" @click="emptyAll">是</button>
+      <button class="btn_right" @click="disEmpty">否</button>
     </div>
   </div>
 </template>
 
 <script>
+import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
-  
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    ...mapMutations(['setAwardList', 'setEmptyShow']),
+    emptyAll() {
+      this.setAwardList([])
+      this.setEmptyShow(false)
+    },
+    disEmpty() {
+      this.setEmptyShow(false)
+    }
+  }
 }
 </script>
 
