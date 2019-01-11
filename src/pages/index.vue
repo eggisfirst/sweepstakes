@@ -80,14 +80,11 @@ export default {
       if(!this.awardContent) {
         this.stopLottery()
       }
-    },
-    awardName() {
-      // this.connection()
     }
   },
   mounted() {
-    // this.initWebSocket()
-    this._getData()
+    this.initWebSocket()
+    // this._getData()
   },
   methods: {
     ...mapMutations([
@@ -110,6 +107,7 @@ export default {
           if(res.body) {
             this.award = JSON.parse(res.body)
             console.log(this.award)
+             this.setAwardName(this.award)
           }
         });
       });
@@ -197,22 +195,16 @@ export default {
     margin: auto;
     margin-top: 9px;
   }
-  
   .award_person{
     position: absolute;
     left: 16%;
     top: 30%;
-    // margin-left: -34%;
     width: 68%;
-    // border: 1px solid red;
-    // height: 67.2%;
-    // margin: auto;
-    // margin-top: 6vw;
   }
   .clean_components {
     position: absolute;
-    bottom: 17%;
-    right: 6%;
+    top: 75%;
+    right: 4%;
   }
   .footer {
     position: fixed;
@@ -221,7 +213,6 @@ export default {
     color: #6f6f6f;
     opacity: .5;
     font-size: 24px;
-    // width: 152px;
     text-align: center;
     margin-left: -75px; 
   }

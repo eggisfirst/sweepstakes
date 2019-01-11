@@ -34,16 +34,16 @@ export default {
   methods: {
     //获取抽奖用户列表
     getAllUser() {
-      // if(this.awardName.lotteryId) {
-      //   let id = this.awardName.lotteryId
-      //   indexModel.getAllUser(id).then(res => {
-      //     console.log(123,res)
-      //   })
-      // }
-      let id = 1
-      indexModel.getMockAllUser(id).then(res => {
-        this.img = res.data
-      })
+      if(this.awardName.lotteryId) {
+        let id = this.awardName.lotteryId
+        indexModel.getAllUser(id).then(res => {
+          console.log(123,res)
+        })
+      }
+      // let id = 1
+      // indexModel.getMockAllUser(id).then(res => {
+      //   this.img = res.data
+      // })
     }
 
   }

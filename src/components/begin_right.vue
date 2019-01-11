@@ -18,15 +18,17 @@
                 <img :src="`${ item.headPortrait }`" alt="">
               </div>
             </div>
-            <div class="delete_icon" v-show="isShow === index? true : false"></div>
+            <div class="delete_icon" 
+              v-show="isShow === index? true : false"
+              @click="deleteData(index)"></div>
           </div>
           <p class="content_name" :style="{'fontSize':`${fontSize}`}">{{ item.name }}</p>
           <p class="content_num" :style="{'fontSize':`${fontSize}`}">{{ item.number }}</p>
         </li>
       </ul>
     </div>
-    <div class="control_page">
-      <turn-page/>
+    <div class="control_page" v-show="showTurnPage">
+      <turn-page :allPage='allPage' :page='changeNowPage'/>
     </div>
     <div class="empty_icon" @click="isEmptyShow"></div>
   </div>
@@ -36,6 +38,8 @@
 import TurnPage from './turnPage'
 import Vuex,{ mapMutations, mapState } from 'vuex'
 import awardName from '../store/modules/awardName';
+import {IndexModel} from '../utils/index'
+const indexModel = new IndexModel()
 export default {
   components: { TurnPage },
   data() {
@@ -43,7 +47,10 @@ export default {
       isShow: -1,
       list: [],
       liWidth: '',
-      fontSize: ''
+      fontSize: '',
+      showTurnPage: false,
+      allPage: 0,
+      nowPage: 1
     }
   },
   computed: {
@@ -55,16 +62,28 @@ export default {
     })
   },
   watch: {
+    //奖项改变
     awardName() {
-      this.list = []
+      this.setAwardList([])
+      this.list = this.awardList
     },
+    //开始抽奖
     beginLock() {
       if(this.beginLock) {
         this.list = []
       }else {
-        this.list = this.awardList
+        if(this.list.length > 0) {
+          this.setData()
+        }
       }
     },
+    //翻页
+    nowPage() {
+      if(this.list.length > 0) {
+        this.setData()
+      }
+    },
+    //中奖列表
     awardList() {
       if(this.awardList.length === 1) {
         this.liWidth = '35%'
@@ -80,6 +99,7 @@ export default {
         this.fontSize = '14px'
       }else if(this.awardList.length === 0) {
         this.list = []
+        this.showTurnPage = false
       }
     }
   },
@@ -96,7 +116,37 @@ export default {
     isEmptyShow() {
       this.setEmptyShow(true)
     },
+    //处理翻页数据
     setData() {
+      this.allPage = Math.ceil((this.awardList.length)/15)
+      if(this.allPage > 1) {
+        this.showTurnPage = true
+        if(this.nowPage >= 1 && this.nowPage < this.allPage){
+          let leftSide = (this.nowPage - 1)* 15 
+          let rightSide = leftSide + 15
+          this.list = this.awardList.slice(leftSide,rightSide)
+        }
+        else if(this.nowPage > 1 && this.nowPage == this.allPage) {
+          let left_side = (this.nowPage - 1)* 15 + 1
+          let right_side = this.awardList.length
+          this.list = this.awardList.slice(left_side,right_side)
+        }
+      }else{
+        this.list = this.awardList
+      }
+    },
+    deleteData(index) {
+      this.awardList.splice(index, 1)
+      let prizeId = this.awardName.id
+      let userId = this.awardList[index].id
+      indexModel.deleteLottery(prizeId, userId).then(res => {
+        if(res.status === 1) {
+          console.log(res.msg)
+        }
+      })
+    },
+    changeNowPage(value) {
+      this.nowPage = value
     }
   }
 }

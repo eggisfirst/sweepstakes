@@ -74,16 +74,16 @@ export default {
     },
     //点击开始抽奖
     beginBtn() {
-      let prizeId = this.awardName.id
+      let prizeId = this.list.id
       let drawNum = this.num
-      if(drawNum > this.awardName.winNum) {
+      if(drawNum > this.list.winNum) {
         alert('输入人数大于该奖项剩余名额')
       }else {
         this.setAwardContent(false)
         this.setBeginLock(true)
         indexModel.getDrawLottery(prizeId, drawNum).then(res => {
-          console.log(111,res.data)
-          this.setAwardList(res.data)
+          console.log(111,res.list)
+          this.setAwardList(res.list)
         })
       }
     }

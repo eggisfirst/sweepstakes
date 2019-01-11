@@ -27,22 +27,32 @@ class IndexModel extends Request {
     })
   }
   //抽奖接口
+  getDrawLottery(prizeId, drawNum) {
+    return this.getData({
+      url: 'http://10.11.8.207/api/lotteryWinner/drawLottery',
+      params: {
+        prizeId: prizeId, // 奖品id
+        drawNum:  drawNum// 抽奖人数
+      }
+    })
+  }
+  //模拟抽奖接口
   // getDrawLottery(prizeId, drawNum) {
   //   return this.getData({
-  //     url: 'http://10.11.8.207/api/lotteryWinner/drawLottery',
-  //     params: {
+  //     url: '/good/list',
+  //     data: {
   //       prizeId: prizeId, // 奖品id
   //       drawNum:  drawNum// 抽奖人数
   //     }
   //   })
   // }
-  //模拟抽奖接口
-  getDrawLottery(prizeId, drawNum) {
+  //删除中奖记录
+  deleteLottery(prizeId, userId) {
     return this.getData({
-      url: '/good/list',
-      data: {
-        prizeId: prizeId, // 奖品id
-        drawNum:  drawNum// 抽奖人数
+      url: 'ttp://10.11.8.207/api/lotteryWinner/delete',
+      params: {
+        prizeId,
+        userId
       }
     })
   }
