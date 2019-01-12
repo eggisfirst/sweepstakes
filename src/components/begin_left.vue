@@ -51,6 +51,7 @@ export default {
     },
     deleteNum() {
       this.allNum = this.allNum + this.deleteNum
+      this.setDeleteNum(0)
       console.log('jiale allNum', this.allNum)
     }
   },
@@ -64,7 +65,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setBeginLock', 'setAwardContent', 'setAwardList']),
+    ...mapMutations(['setBeginLock', 'setAwardContent', 'setAwardList', 'setDeleteNum']),
     //抽奖人数选择
     add() {
       if(this.num < this.allNum) {
@@ -90,9 +91,6 @@ export default {
           this.allNum = this.allNum - this.drawNum
           console.log('meiyoujia allNum', this.allNum)
           this.num = 1
-          // if(res.status === 0 ) {
-          //   alert(res.msg)
-          // }
         })
       }
     }

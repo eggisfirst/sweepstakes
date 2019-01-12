@@ -21,7 +21,7 @@ class IndexModel extends Request {
   //获取全部头像
   getAllUser(id) {
     return this.getData({
-      url: 'http://10.11.8.207/api/lotteryUser/getALlUser',
+      url: '/lotteryUser/getALlUser',
       // url: '/lotteryUser/getALlUser',
       params: {
         'lotteryId': id
@@ -31,7 +31,7 @@ class IndexModel extends Request {
   //抽奖接口
   getDrawLottery(prizeId, drawNum) {
     return this.getData({
-      url: 'http://10.11.8.207/api/lotteryWinner/drawLottery',
+      url: '/lotteryWinner/drawLottery',
       params: {
         prizeId: prizeId, // 奖品id
         drawNum:  drawNum// 抽奖人数
@@ -51,7 +51,7 @@ class IndexModel extends Request {
   //删除中奖记录
   deleteLottery(prizeId,userIds) {
     return this.getPostData({
-      url: 'http://10.11.8.207/api/lotteryWinner/delete',
+      url: '/lotteryWinner/delete',
       data: {
         prizeId,
         userIds

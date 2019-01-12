@@ -26,7 +26,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(['setAwardList', 'setEmptyShow']),
+    ...mapMutations(['setAwardList', 'setEmptyShow', 'setDeleteNum']),
     emptyAll() {
       let deleteArr = []
       this.awardList.forEach((item, index) => {
@@ -36,9 +36,7 @@ export default {
       let userId = deleteArr
       this.setAwardList([])
       indexModel.deleteLottery(prizeId, userId).then(res => {
-        if(res.status === 1) {
-          console.log(res.msg)
-        }
+        this.setDeleteNum(userId.length)
       })
       this.setEmptyShow(false)
     },
