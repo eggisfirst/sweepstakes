@@ -1,14 +1,13 @@
 <template>
   <div class="left">
     <div class="left_top">
-      <span class="awards">{{ list.award || '一等奖'}}</span>
-      <span class="awards_number">({{ list.winNum || '3'}}名)</span>
-      <p class="awards_name">{{ list.prize || 'iphone xs Max'}}</p>
+      <span class="awards">{{ list.award }}</span>
+      <span class="awards_number">({{ list.winNum }}名)</span>
+      <p class="awards_name">{{ list.prize }}</p>
     </div>
     <div class="left_content">
       <div class="left_content_bg">
-        <img :src="`${ list.prizePicture }`" v-show="imgShow">
-        <img src="../assets/image/award_photo.png" v-show="!imgShow">
+        <img :src="`${ list.prizePicture }`">
       </div>
     </div>
     <div class="control_num">
@@ -36,7 +35,8 @@ import axios from 'axios'
 export default {
   computed: {
     ...mapState({
-      awardName: state => state.awardName.awardName
+      awardName: state => state.awardName.awardName,
+      deleteNum: state => state.awardName.deleteNum
     })
   },
   watch: {
@@ -44,25 +44,23 @@ export default {
       this.list = this.awardName
       this.prizeId = this.list.id
       this.allNum = this.list.winNum
-      this.imgShow = true
     },
     num() {
       this.num = parseInt(this.num)
+      console.log('changenum',this.num)
+    },
+    deleteNum() {
+      this.allNum = this.allNum + this.deleteNum
+      console.log('jiale allNum', this.allNum)
     }
   },
   data() {
     return {
       num: 1,
-      imgShow: false,
       list: {},
       drawNum: 0,
       prizeId: '',
       allNum: 0
-    }
-  },
-  created() {
-    if(this.awardName.prizePicture) {
-      this.imgShow = true
     }
   },
   methods: {
@@ -81,6 +79,7 @@ export default {
     //点击开始抽奖
     beginBtn() {
       this.drawNum = this.num
+      console.log('drawnum', this.drawNum)
       if(this.drawNum > this.allNum) {
         alert('输入人数大于该奖项剩余名额')
       }else {
@@ -89,9 +88,11 @@ export default {
         indexModel.getDrawLottery(this.prizeId, this.drawNum).then(res => {
           this.setAwardList(res.list)
           this.allNum = this.allNum - this.drawNum
-          if(res.status === 0 ) {
-            alert(res.msg)
-          }
+          console.log('meiyoujia allNum', this.allNum)
+          this.num = 1
+          // if(res.status === 0 ) {
+          //   alert(res.msg)
+          // }
         })
       }
     }
@@ -128,7 +129,8 @@ export default {
       background-color: #e4b54a;
       text-align: center;
       img{
-        width: 58%;
+        width: 68%;
+        height: 100%;
         margin-top: -2vw;
       }
     }

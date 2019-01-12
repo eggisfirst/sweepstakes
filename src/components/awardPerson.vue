@@ -31,7 +31,9 @@ export default {
   },
   watch: {
     awardList() {
-      this.setAwardList()
+      if(this.awardList) {
+        this.setAwardList()
+      }
     }
   },
   methods: {

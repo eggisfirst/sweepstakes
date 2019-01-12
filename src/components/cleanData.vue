@@ -28,15 +28,18 @@ export default {
   methods: {
     ...mapMutations(['setAwardList', 'setEmptyShow']),
     emptyAll() {
+      let deleteArr = []
+      this.awardList.forEach((item, index) => {
+        deleteArr.push(item.id)
+      });
+      let prizeId =this.awardName.id
+      let userId = deleteArr
       this.setAwardList([])
-
-      // let prizeId = this.awardName.id
-      // let userId = this.awardList[index].id
-      // indexModel.deleteLottery(prizeId, userId).then(res => {
-      //   if(res.status === 1) {
-      //     console.log(res.msg)
-      //   }
-      // })
+      indexModel.deleteLottery(prizeId, userId).then(res => {
+        if(res.status === 1) {
+          console.log(res.msg)
+        }
+      })
       this.setEmptyShow(false)
     },
     disEmpty() {

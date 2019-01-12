@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import axios from 'axios' 
 import TurnPage from './turnPage'
 import Vuex,{ mapMutations, mapState } from 'vuex'
 import awardName from '../store/modules/awardName';
@@ -50,7 +51,10 @@ export default {
       fontSize: '',
       showTurnPage: false,
       allPage: 0,
-      nowPage: 1
+      nowPage: 1,
+      award: {},
+      deleteNumber: 0,
+      userIds: []
     }
   },
   computed: {
@@ -65,16 +69,12 @@ export default {
     //奖项改变
     awardName() {
       this.setAwardList([])
-      this.list = this.awardList
+      this.award = this.awardName
     },
     //开始抽奖
     beginLock() {
       if(this.beginLock) {
         this.list = []
-      }else {
-        if(this.list.length > 0) {
-          this.setData()
-        }
       }
     },
     //翻页
@@ -104,10 +104,14 @@ export default {
         this.list = []
         this.showTurnPage = false
       }
+    },
+    //删除中奖记录
+    deleteNumber() {
+      this.setDeleteNum(this.deleteNumber)
     }
   },
   methods: {
-    ...mapMutations(['setAwardList', 'setEmptyShow']),
+    ...mapMutations(['setAwardList', 'setEmptyShow', 'setDeleteNum']),
     //删除图标的显示隐藏
     delete_show(index) {
       this.isShow = index
@@ -140,15 +144,14 @@ export default {
       }
     },
     deleteData(index) {
+      let prizeId = this.award.id
+      this.userIds[0] = this.awardList[index].id
       this.awardList.splice(index, 1)
-      let prizeId = this.awardName.id
-      let userId = this.awardList[index].id
-      indexModel.deleteLottery(prizeId, userId).then(res => {
+      indexModel.deleteLottery(prizeId, this.userIds)
+      .then(res => {
         if(res.status === 1) {
-          console.log(res.msg)
-          let num = this.awardName.winNum
-          this.$set(this.awardName, 'winNum', num)
-          console.log('winNum',this.awardName.winNum)
+          this.deleteNumber = this.deleteNumber + 1
+          console.log('winNum',this.deleteNumber)
         }
       })
     },

@@ -13,7 +13,11 @@
       v-on:enter="contEnter"
       v-on:leave="contLeave">
       <div class="content" v-show="awardContent">
-        <begin-page/>
+        <div class="standBy" v-show="!beginContent">
+          <div class="logo"></div>
+          <div class="standByBg"></div>
+        </div>
+        <begin-page  v-show="beginContent"/>
       </div>
     </transition>
      <transition 
@@ -63,7 +67,8 @@ export default {
       content: true,
       award_person: true,
       stompClient: '',
-      award: ''
+      award: '',
+      beginContent: false
     }
   },
   computed: {
@@ -79,6 +84,11 @@ export default {
     awardContent() {
       if(!this.awardContent) {
         this.stopLottery()
+      }
+    },
+    awardName() {
+      if(this.awardName) {
+        this.beginContent = true
       }
     }
   },
@@ -194,6 +204,34 @@ export default {
     height: 67.2%;
     margin: auto;
     margin-top: 9px;
+    .standBy{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(23, 23, 23, 0.8);
+      box-shadow: 0px 5px 16px 0px 
+        #000000;
+      border-radius: 6px;
+      .logo{
+        background: url(../assets/image/logo.png) no-repeat center;
+        width: 70px;
+        height: 48px;
+        background-size: 100% 100%;
+        position: absolute;
+        top: 24px;
+        right: 63px; 
+      }
+      .standByBg{
+        background: url(../assets/image/standByBg.png) no-repeat center;
+        width: 595px;
+        height: 86px;
+        background-size: 100% 100%;
+        position: absolute;
+        left: 50%;
+        margin-left: -297px;
+        top: 50%;
+        margin-top: -43px;
+      }
+    }
   }
   .award_person{
     position: absolute;

@@ -1,4 +1,6 @@
 import { Request } from './request'
+import qs from 'qs'
+import axios from 'axios' 
 
 class IndexModel extends Request {
   //模拟获取抽奖类型
@@ -47,13 +49,13 @@ class IndexModel extends Request {
   //   })
   // }
   //删除中奖记录
-  deleteLottery(prizeId, userId) {
-    return this.getData({
-      url: 'ttp://10.11.8.207/api/lotteryWinner/delete',
-      params: {
+  deleteLottery(prizeId,userIds) {
+    return this.getPostData({
+      url: 'http://10.11.8.207/api/lotteryWinner/delete',
+      data: {
         prizeId,
-        userId
-      }
+        userIds
+      },
     })
   }
 }

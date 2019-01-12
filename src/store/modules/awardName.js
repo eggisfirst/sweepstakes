@@ -1,9 +1,11 @@
 const state = {
-  awardName: {}
+  awardName: {},
+  deleteNum: 0
 }
 
 const mutations = {
-  setAwardName: (state, arr) => state.awardName = arr
+  setAwardName: (state, arr) => state.awardName = arr,
+  setDeleteNum: (state, arr) => state.deleteNum = arr
 }
 
 const actions = {

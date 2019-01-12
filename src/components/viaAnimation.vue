@@ -18,7 +18,8 @@ const indexModel = new IndexModel()
 export default {
   data() {
     return {
-      img: []
+      img: [],
+      key: true
     }
   },
   computed: {
@@ -26,10 +27,19 @@ export default {
       awardName: state => state.awardName.awardName
     })
   },
+  watch: {
+    awardName() {
+      if(this.awardName) {
+        if(this.key) {
+          this.getAllUser()
+        }
+      }
+    }
+  },
   created() {
     // this._getData()
     // this.getAwards()
-    this.getAllUser()
+    // this.getAllUser()
   },
   methods: {
     //获取抽奖用户列表
@@ -37,12 +47,14 @@ export default {
       if(this.awardName.lotteryId) {
         let id = this.awardName.lotteryId
         indexModel.getAllUser(id).then(res => {
-          console.log(123,res)
+          console.log(123,res.users)
+          this.img = res.users
+          this.key = false
         })
       }
-      indexModel.getMockAllUser(1).then(res => {
-        this.img = res.data
-      })
+      // indexModel.getMockAllUser(1).then(res => {
+      //   this.img = res.data
+      // })
     }
 
   }
