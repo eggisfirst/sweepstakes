@@ -9,6 +9,8 @@
               <img :src="`${item.headPortrait}`" alt="">
             </div>
           </div>
+          <p class="content_name">{{ item.name }}</p>
+          <p class="content_num">{{ item.number }}</p>
         </div>
       </li>
     </ul>
@@ -116,6 +118,12 @@ export default {
               border-radius: 50%;
             }
           }
+        }
+         .content_name, .content_num{
+          font-size: 24px;
+          color: #ffa926;
+          text-align: center;
+          line-height: 1.4em;
         }
       }
     }

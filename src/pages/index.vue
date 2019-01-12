@@ -236,7 +236,7 @@ export default {
   .award_person{
     position: absolute;
     left: 16%;
-    top: 30%;
+    top: 22%;
     width: 68%;
   }
   .clean_components {

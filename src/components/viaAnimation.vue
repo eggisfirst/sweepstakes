@@ -4,7 +4,8 @@
       <div 
         v-for="(item, index) in img" :key="index"  
         class="bubble"
-        :style="{'backgroundImage': `url(${item.headPortrait})`}"></div>
+        :style="{'backgroundImage': `url(${item.headPortrait})`}">
+      </div>
     </div>
 </div>
 </template>
@@ -73,7 +74,7 @@ body {
 
 @keyframes move {
   100% {
-    transform: translate3d(-100px, -50px, 1000px);
+    transform: translate3d(-300px, -50px, 2000px);
   }
 }
 .container {
@@ -95,20 +96,19 @@ body {
   position: absolute;
   opacity: 1;
   border-radius: 50%;
-  animation: move 3s infinite;
-  // border: 1px solid #e28902;
+  animation: move 2s infinite;
 }
 
-@for $i from 1 through 500 {
+@for $i from 1 through 100 {
   .bubble:nth-child(#{$i}){
-     $size: random(25)+px;
+     $size: random(60)+px;
      height: $size;
      width: $size;
      animation-delay: -$i * .2s;
-     transform: translate3d( (random(200) * 1px),  (random(200) * 1px), (random(400) * 1px));
+     transform: translate3d( (random(200) * 1px),  (random(100) * 1px), (random(200) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
     //  background-image:url(../assets/image/icon1.jpeg); 
-     background-size: 200% 200%;
+     background-size: contain;
      background-position: center;
      background-repeat: no-repeat;
   }

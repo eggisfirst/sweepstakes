@@ -147,13 +147,46 @@ export default {
       let prizeId = this.award.id
       this.userIds[0] = this.awardList[index].id
       this.awardList.splice(index, 1)
-      indexModel.deleteLottery(prizeId, this.userIds)
-      .then(res => {
-        if(res.status === 1) {
-          this.deleteNumber = this.deleteNumber + 1
-          console.log('winNum',this.deleteNumber)
+      let data ={
+        prizeId,
+        userIds:this.userIds,
+      }
+      // // data = JSON.parse(data)
+      axios.post('http://10.11.8.207/api/lotteryWinner/delete', {
+        prizeId: prizeId,
+        userIds: this.userIds,
+      },{
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded',
         }
       })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    //  axios({
+    //    url:'http://10.11.8.207/api/lotteryWinner/delete',
+    //    method: 'post',
+    //    data: {
+    //      prizeId:prizeId,
+    //      userIds: this.userIds
+    //    }
+    //  })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+      // indexModel.deleteLottery(prizeId, this.userIds)
+      // .then(res => {
+      //   if(res.status === 1) {
+      //     this.deleteNumber = this.deleteNumber + 1
+      //     console.log('winNum',this.deleteNumber)
+      //   }
+      // })
     },
     changeNowPage(value) {
       this.nowPage = value
