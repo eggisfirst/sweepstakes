@@ -14,7 +14,6 @@
           <div class="content_photo">
             <div class="photo_wrapper">
               <div class="photo">
-                <!-- <img src="../assets/image/photo.jpeg" alt=""> -->
                 <img :src="`${ item.headPortrait }`" alt="">
               </div>
             </div>
@@ -52,7 +51,6 @@ export default {
       allPage: 0,
       nowPage: 1,
       award: {},
-      deleteNumber: 0,
       userIds: []
     }
   },
@@ -105,7 +103,6 @@ export default {
           this.showTurnPage = false
         }
       }
-    
     }
   },
   methods: {
@@ -141,6 +138,7 @@ export default {
         this.list = this.awardList
       }
     },
+    //删除数据
     deleteData(index) {
       let prizeId = this.award.id
       this.userIds[0] = this.awardList[index].id

@@ -17,7 +17,6 @@
         <input  class="num"
           type="number" 
           v-model="num">
-        <!-- <div class="num">{{ num }}</div> -->
       </span>
       <button class="add" @click="add"></button>
     </div>
@@ -47,7 +46,6 @@ export default {
     },
     num() {
       this.num = parseInt(this.num)
-      console.log('changenum',this.num)
     },
     deleteNum() {
       this.allNum = this.allNum + this.deleteNum

@@ -204,6 +204,7 @@ export default {
     height: 67.2%;
     margin: auto;
     margin-top: 9px;
+    position: relative;
     .standBy{
       width: 100%;
       height: 100%;

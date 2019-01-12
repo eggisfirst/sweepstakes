@@ -48,7 +48,6 @@ export default {
       if(this.awardName.lotteryId) {
         let id = this.awardName.lotteryId
         indexModel.getAllUser(id).then(res => {
-          console.log(123,res.users)
           this.img = res.users
           this.key = false
         })
@@ -67,7 +66,6 @@ html, body {
   height: 100%;
 }
 body {
-  // background: black;
   min-height: 100%;
   overflow: hidden;
 }
@@ -107,7 +105,6 @@ body {
      animation-delay: -$i * .2s;
      transform: translate3d( (random(200) * 1px),  (random(100) * 1px), (random(200) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
-    //  background-image:url(../assets/image/icon1.jpeg); 
      background-size: contain;
      background-position: center;
      background-repeat: no-repeat;
