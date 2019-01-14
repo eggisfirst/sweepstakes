@@ -3,10 +3,10 @@
     <ul>
       <li v-for="(item, index) in list" :key="index">
         <div class="content_photo">
+          <img :src="`${item.headPortrait}`" alt="" class="img">
           <div class="photo_wrapper">
             <div class="photo">
               <!-- <img src="../assets/image/photo.jpeg" alt=""> -->
-              <img :src="`${item.headPortrait}`" alt="">
             </div>
           </div>
           <p class="content_name">{{ item.name }}</p>
@@ -65,14 +65,24 @@ export default {
     li {
       width: 18%;
       margin-top: 3vw;
-       @-webkit-keyframes myMove1 {
-            //  0% {background: rgba(66, 52, 26, 0.19)}
-            // 50% {border: 14px solid rgba(80, 80, 48, 0.89)}
-            // 100%{border: 5px solid rgba(49, 49, 30, 0.89)}
-            // 0% {width: 100%;padding-top: 100%}
-            // 50% {width: 120%;padding-top: 120%}
-            // 100%{width: 100%;padding-top: 100%}
-        }  
+      margin-bottom: 2vw;
+       @-webkit-keyframes right{
+            0%{
+              -webkit-transform: scale(1);
+            }
+            // 25%{
+            //   -webkit-transform: scale(1.1);
+            // }
+            50%{
+              -webkit-transform: scale(1.2);
+            }
+            // 75%{
+            //   -webkit-transform: scale(1.1);
+            // }
+            100%{
+                -webkit-transform: scale(1);
+            }
+        }
       .content_photo{
         position: relative;
         width: 100%;
@@ -81,15 +91,17 @@ export default {
         border-radius: 100%;
         background: rgba(219, 139, 0, 0.19);
         margin-bottom: 8px;
-        // -webkit-animation: myMove1 0.5s  infinite linear;
-          // -webkit-animation: fade 3s linear infinite ;
-
-        @-webkit-keyframes fade {
-            from { opacity: 1.0; }
-            50% { opacity: 0.4; }
-            to { opacity: 1.0; }
-        }
+        .img{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+          }
         .photo_wrapper{
+          overflow: hidden;
+          -webkit-animation: right .5s  infinite linear;
           border: 2px dotted #d78200;
           width: 94%;
           height: 0;
@@ -99,19 +111,6 @@ export default {
           left: 3%;
           top: 2%;
           box-sizing: border-box;
-          // -webkit-animation: fade 3s linear infinite ;
-          ::after{
-            position: absolute;
-            margin-left: -12px;
-            margin-top: -12px;
-            width: 50px;
-            height: 50px;
-            content: '';
-            display: block;
-            border-radius: 50%;
-            opacity: 0;
-            animation: wave 3s infinite ease-out
-          }
           .photo{
             position: absolute;
             top: 5%;
@@ -122,14 +121,14 @@ export default {
             border-radius: 100%;
             box-sizing: border-box;
             border: 2px solid #e28902;
-            img{
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-            }
+            // img{
+            //   position: absolute;
+            //   top: 0;
+            //   left: 0;
+            //   width: 100%;
+            //   height: 100%;
+            //   border-radius: 50%;
+            // }
           }
         }
          .content_name, .content_num{
