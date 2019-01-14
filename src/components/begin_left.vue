@@ -7,7 +7,8 @@
     </div>
     <div class="left_content">
       <div class="left_content_bg">
-        <img :src="`${ list.prizePicture }`">
+        <img :src="`${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}">
+        <!-- <img src="http://10.11.8.207:8099/prize//84//dd//84dd91cc35b148c88030e7e9e79dcb3f.png" alt=""> -->
       </div>
     </div>
     <div class="control_num">
@@ -43,6 +44,13 @@ export default {
       this.list = this.awardName
       this.prizeId = this.list.id
       this.allNum = this.list.winNum
+      if(this.list.award === '一等奖') {      //根据图片大小调整
+        this.firstPWidth = '60'
+      }else if(this.list.award === '五等奖'){
+        this.firstPWidth = '80'
+      }else {
+        this.firstPWidth = '90'
+      }
     },
     num() {
       this.num = parseInt(this.num)
@@ -59,7 +67,8 @@ export default {
       list: {},
       drawNum: 0,
       prizeId: '',
-      allNum: 0
+      allNum: 0,
+      firstPWidth:''
     }
   },
   methods: {
@@ -127,10 +136,14 @@ export default {
       margin-top: 2vw;
       background-color: #e4b54a;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       img{
-        width: 68%;
-        height: 100%;
-        margin-top: -2vw;
+        // transform: scale(0.7);
+        width: 80%;
+        height: auto;
+        margin-top: -3vw;
       }
     }
   }
