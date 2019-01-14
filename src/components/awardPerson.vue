@@ -81,12 +81,14 @@ export default {
         border-radius: 100%;
         background: rgba(219, 139, 0, 0.19);
         margin-bottom: 8px;
-        -webkit-animation: myMove1 0.5s  infinite linear;
-        @-webkit-keyframes  changeColor{
-          0% {border-color: #d78200}
-          50% {border-color: #FFD700}
-          100%{border-color: #d78200}
-        } 
+        // -webkit-animation: myMove1 0.5s  infinite linear;
+          // -webkit-animation: fade 3s linear infinite ;
+
+        @-webkit-keyframes fade {
+            from { opacity: 1.0; }
+            50% { opacity: 0.4; }
+            to { opacity: 1.0; }
+        }
         .photo_wrapper{
           border: 2px dotted #d78200;
           width: 94%;
@@ -97,8 +99,19 @@ export default {
           left: 3%;
           top: 2%;
           box-sizing: border-box;
-          // -webkit-animation: changeColor 1s linear infinite ;
-
+          // -webkit-animation: fade 3s linear infinite ;
+          ::after{
+            position: absolute;
+            margin-left: -12px;
+            margin-top: -12px;
+            width: 50px;
+            height: 50px;
+            content: '';
+            display: block;
+            border-radius: 50%;
+            opacity: 0;
+            animation: wave 3s infinite ease-out
+          }
           .photo{
             position: absolute;
             top: 5%;

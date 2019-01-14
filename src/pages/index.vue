@@ -136,12 +136,12 @@ export default {
           // this.Lottery = false
           this.setBeginLock(false)
           this.setAwardPerson(true)
-          setTimeout(() => {
-            this.setAwardPerson(false)
-          }, 3000);
-           setTimeout(() => {
-            this.setAwardContent(true)
-          }, 3200);
+          // setTimeout(() => {
+          //   this.setAwardPerson(false)
+          // }, 3000);
+          //  setTimeout(() => {
+          //   this.setAwardContent(true)
+          // }, 3200);
         }
       }
     },

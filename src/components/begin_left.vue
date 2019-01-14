@@ -78,17 +78,20 @@ export default {
     //点击开始抽奖
     beginBtn() {
       this.drawNum = this.num
-      console.log('drawnum', this.drawNum)
       if(this.drawNum > this.allNum) {
         alert('输入人数大于该奖项剩余名额')
       }else {
-        this.setAwardContent(false)
-        this.setBeginLock(true)
         indexModel.getDrawLottery(this.prizeId, this.drawNum).then(res => {
-          this.setAwardList(res.list)
-          this.allNum = this.allNum - this.drawNum
-          console.log('meiyoujia allNum', this.allNum)
-          this.num = 1
+          if(res.status === 1) {
+            this.setAwardContent(false)
+            this.setBeginLock(true)
+            this.setAwardList(res.list)
+            this.allNum = this.allNum - this.drawNum
+            console.log('meiyoujia allNum', this.allNum)
+            this.num = 1
+          }else {
+            alert(res.msg)
+          }
         })
       }
     }
