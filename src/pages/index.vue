@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <bg-music/>
     <div class="title">
       <img src="../assets/image/topBar.png" alt="">
     </div>
@@ -15,7 +16,8 @@
       <div class="content" v-show="awardContent">
         <div class="standBy" v-show="!beginContent">
           <div class="logo"></div>
-          <div class="standByBg"></div>
+          <div class="standByBg">
+          </div>
         </div>
         <begin-page  v-show="beginContent"/>
       </div>
@@ -45,6 +47,7 @@
 </template>
 
 <script>
+import BgMusic from '../components/bgMusic'
 import BgStart from '../components/bgStart'
 import ViaAnimation from '../components/viaAnimation'
 import BeginPage from '../components/beginPage'
@@ -60,7 +63,7 @@ import  Velocity from 'velocity-animate'
 import {awardBeforeEnter, awardEnter, awardLeave} from '../utils/my-animation'
 import {contentBeforeEnter, contentEnter, contentLeave} from '../utils/my-animation'
 export default {
-  components: { BgStart, ViaAnimation, BeginPage, CleanData, AwardPerson },
+  components: { BgStart, ViaAnimation, BeginPage, CleanData, AwardPerson, BgMusic },
   data () {
     return {
       Lottery: false,

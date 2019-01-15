@@ -1,6 +1,7 @@
 import axios from 'axios' 
 class Request {
-  baseUrl = 'http://10.11.8.207/api'
+  // baseUrl = 'http://10.11.8.207/api'   
+  baseUrl = 'https://derucci.net'
   
   getData({url, params, method = "GET" }) {
     return new Promise((resolve, reject) => {
