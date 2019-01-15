@@ -1,24 +1,46 @@
 <template>
   <div class="bgMusic">
     <div class="controls" @click="play" ref="contorls"></div>
-      <!-- <audio src="../static/audios/donggan.mp3" 
-        loop
-        ref="audio"
-        style="display:none">
-      </audio> -->
        <audio ref="audio"
         :src="bgMusic" 
+        preload="auto"
         loop>
       </audio>
   </div>
 </template>
 
 <script>
+import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
   data() {
     return {
       isPlaying: false,
-      bgMusic: '../static/audios/donggan.mp3'
+      bgMusic: '../static/audios/choujiang1.mp3',
+      isAutoPlay: false,
+      key: true,
+      currentTime: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      awardName: state => state.awardName.awardName,
+      awardContent: state => state.lock.awardContent,
+      awardPerson: state => state.lock.awardPerson
+    })
+  },
+  watch: {
+    awardContent() {
+      this.bgMusic = '../static/audios/begin.mp3'
+    },
+    awardName() {
+      if(this.awardName) {
+        this.autoPlay()
+      }
+    },
+    awardPerson() {
+      if(this.awardPerson) {
+        this.bgMusic = '../static/audios/success.mp3'
+      }
     }
   },
   mounted() {
@@ -29,7 +51,12 @@ export default {
     play(){
       let audio = this.$refs.audio
       if(!this.isPlaying){
+        if(this.key) {
+          audio.currentTime = '18'
+          this.key = false
+        }
         audio.play();
+        audio.autoplay = true
         this.$refs.contorls.style.animationPlayState = 'running'
         this.isPlaying = !this.isPlaying;
       }else {
@@ -38,6 +65,11 @@ export default {
         this.isPlaying = !this.isPlaying;
       }
     },
+    autoPlay() {
+      let audio = this.$refs.audio
+      this.bgMusic = '../static/audios/begin.mp3'
+      // this.$refs.contorls.style.display = 'none'
+    }
   }
 }
 </script>
@@ -55,6 +87,7 @@ export default {
     top: 20px;
     right: 20px;
     animation: move 5s infinite linear;
+    opacity: 0.4;
   }
   audio{
     display: none

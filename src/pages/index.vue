@@ -114,6 +114,7 @@ export default {
     },
     connection() {
       let sock = new SockJS("http://10.11.8.207/endpointChat");
+      // let sock = new SockJS("https://derucci.net/endpointChat");
       this.stompClient = Stomp.over(sock);
       this.stompClient.connect({}, () => {
         this.stompClient.subscribe('/topic/lottery/prize', (res) => {
@@ -234,6 +235,18 @@ export default {
         margin-left: -297px;
         top: 50%;
         margin-top: -43px;
+        animation: change 0.9s linear infinite ;
+      }
+      @keyframes change {
+        0%{
+          transform:scale(1)
+        }
+        50%{
+          transform:scale(1.3)
+        }
+        100%{
+          transform:scale(1)
+        }
       }
     }
   }
