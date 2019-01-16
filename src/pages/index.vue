@@ -113,8 +113,8 @@ export default {
       }
     },
     connection() {
-      let sock = new SockJS("http://10.11.8.207/endpointChat");
-      // let sock = new SockJS("https://derucci.net/endpointChat");
+      // let sock = new SockJS("http://10.11.8.207/endpointChat");
+      let sock = new SockJS("https://derucci.net/endpointChat");
       this.stompClient = Stomp.over(sock);
       this.stompClient.connect({}, () => {
         this.stompClient.subscribe('/topic/lottery/prize', (res) => {
@@ -182,7 +182,7 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url('../assets/image/bgTop.png') no-repeat center;
+  background: url(../assets/image/bgTop.png) no-repeat center;
   background-size: 100% 100%;
   .title {
     width: 558px;

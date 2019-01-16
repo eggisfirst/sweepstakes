@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       isPlaying: false,
-      bgMusic: '../static/audios/choujiang1.mp3',
+      bgMusic: 'https://derucci.net/web/2019eveningParty/media/choujiang1.mp3',
       isAutoPlay: false,
       key: true,
       currentTime: ''
@@ -30,7 +30,7 @@ export default {
   },
   watch: {
     awardContent() {
-      this.bgMusic = '../static/audios/begin.mp3'
+      this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/begin.mp3'
     },
     awardName() {
       if(this.awardName) {
@@ -39,7 +39,7 @@ export default {
     },
     awardPerson() {
       if(this.awardPerson) {
-        this.bgMusic = '../static/audios/success.mp3'
+        this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/success.mp3'
       }
     }
   },
@@ -67,7 +67,7 @@ export default {
     },
     autoPlay() {
       let audio = this.$refs.audio
-      this.bgMusic = '../static/audios/begin.mp3'
+      this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/begin.mp3'
       // this.$refs.contorls.style.display = 'none'
     }
   }
