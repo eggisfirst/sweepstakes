@@ -15,12 +15,26 @@
 </template>
 
 <script>
+import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
   props:['allPage', 'page'],
   data() {
     return {
       nowPage: 1
     }
+  },
+  computed: {
+    ...mapState({
+      awardContent: state => state.lock.awardContent,
+    })
+  },
+  watch: {
+    awardContent() {
+      this.nowPage = 1
+    }
+  },
+  created() {
+    this.nowPage = 1
   },
   methods: {
     cutPage() {

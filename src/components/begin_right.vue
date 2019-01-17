@@ -85,6 +85,7 @@ export default {
       if(this.awardList) {
         if(this.awardList.length > 0) {
           this.setData()
+          this.nowPage = 1
         }
         if(this.awardList.length === 1) {
           this.liWidth = '35%'
@@ -120,7 +121,6 @@ export default {
     },
     //处理翻页数据
     setData() {
-      console.log('setData', this.awardList)
       this.allPage = Math.ceil((this.awardList.length)/15)
       if(this.allPage > 1) {
         this.showTurnPage = true

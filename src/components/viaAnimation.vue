@@ -2,7 +2,7 @@
   <div class="container">
     <div class="bubble-wrap">
       <div 
-        v-for="(item, index) in img" :key="index"  
+        v-for="(item, index) in imgArr" :key="index"  
         class="bubble"
         :style="{'backgroundImage': `url(${item.headPortrait})`}">
       </div>
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       img: [],
-      key: true
+      key: true,
+      imgArr: []
     }
   },
   computed: {
@@ -49,12 +50,18 @@ export default {
         let id = this.awardName.lotteryId
         indexModel.getAllUser(id).then(res => {
           this.img = res.users
+          this.getSomeData()
+          console.log(this.imgArr)
           this.key = false
         })
       }
-      // indexModel.getMockAllUser(1).then(res => {
-      //   this.img = res.data
-      // })
+    },
+    getSomeData() {
+      this.img.forEach((item,index) => {
+        if(index < 101) {
+          this.imgArr.push(item)
+        }
+      });
     }
 
   }

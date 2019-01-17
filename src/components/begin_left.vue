@@ -8,7 +8,7 @@
     <div class="left_content">
       <div class="left_content_bg">
         <img :src="`${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}">
-        <!-- <img src="http://10.11.8.207:8099/prize//84//dd//84dd91cc35b148c88030e7e9e79dcb3f.png" alt=""> -->
+        <!-- <img :src="'https://derucci.net/api' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
       </div>
     </div>
     <div class="control_num">
@@ -94,7 +94,9 @@ export default {
           if(res.status === 1) {
             this.setAwardContent(false)
             this.setBeginLock(true)
-            this.setAwardList(res.list)
+            setTimeout(() => {
+              this.setAwardList(res.list)
+            },1000)
             this.allNum = this.allNum - this.drawNum
             console.log('meiyoujia allNum', this.allNum)
             this.num = 1
