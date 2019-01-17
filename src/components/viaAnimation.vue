@@ -80,7 +80,7 @@ body {
 
 @keyframes move {
   100% {
-    transform: translate3d(-300px, -50px, 2000px);
+    transform: translate3d(-300px, -40px, 2000px);
   }
 }
 .container {
@@ -111,7 +111,7 @@ body {
      height: $size;
      width: $size;
      animation-delay: -$i * .2s;
-     transform: translate3d( (random(200) * 1px),  (random(100) * 1px), (random(200) * 1px));
+     transform: translate3d( (random(300) * 1px),  (random(100) * 1px), (random(200) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
      background-size: contain;
      background-position: center;

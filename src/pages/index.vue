@@ -80,6 +80,13 @@ export default {
     awardContent() {
       if(!this.awardContent) {
         this.stopLottery()
+      }else {
+        document.onkeydown = (e) => {
+        let _key = window.event.keyCode;
+        if(_key === 32){
+          return null
+        }
+      }
       }
     },
     awardName() {
