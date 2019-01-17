@@ -1,14 +1,14 @@
 <template>
   <div class="home">
+    <bg-start/>
     <bg-music/>
     <div class="title">
       <img src="../assets/image/topBar.png" alt="">
     </div>
-    <bg-start/>
     <div class="viaContainer" v-show="beginLock">
       <ViaAnimation/>
     </div>
-      <transition
+    <transition
       v-bind:css="false"
       v-on:before-enter="contBeforeEnter"
       v-on:enter="contEnter"
@@ -22,17 +22,10 @@
         <begin-page  v-show="beginContent"/>
       </div>
     </transition>
-     <transition 
-      enter-active-class="animated fadeInUpBig"
-      leave-active-class="animated fadeOut"
-      v-show="awardPerson"
-      >
-    <!-- <transition 
-      v-bind:css="false"
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:leave="leave"
-      > -->
+      <transition 
+        enter-active-class="animated fadeInUpBig"
+        leave-active-class="animated fadeOut"
+        v-show="awardPerson">
       <div class="award_person" v-show="awardPerson">
         <award-person />
       </div>
@@ -113,8 +106,8 @@ export default {
       }
     },
     connection() {
-      // let sock = new SockJS("http://10.11.8.207/endpointChat");
-      let sock = new SockJS("https://derucci.net/endpointChat");
+      let sock = new SockJS("http://10.11.8.207/endpointChat");
+      // let sock = new SockJS("https://derucci.net/endpointChat");
       this.stompClient = Stomp.over(sock);
       this.stompClient.connect({}, () => {
         this.stompClient.subscribe('/topic/lottery/prize', (res) => {
@@ -179,6 +172,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .home {
+  overflow: hidden;
   position: fixed;
   width: 100%;
   height: 100%;

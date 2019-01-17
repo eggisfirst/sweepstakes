@@ -71,6 +71,7 @@ export default {
 <style lang="scss" scoped>
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 body {
   min-height: 100%;
