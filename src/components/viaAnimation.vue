@@ -107,11 +107,11 @@ body {
 
 @for $i from 1 through 100 {
   .bubble:nth-child(#{$i}){
-     $size: random(60)+px;
+     $size: random(50)+px;
      height: $size;
      width: $size;
      animation-delay: -$i * .2s;
-     transform: translate3d( (random(300) * 1px),  (random(100) * 1px), (random(200) * 1px));
+     transform: translate3d( (random(200) * 1px),  (random(100) * 1px), (random(200) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
      background-size: contain;
      background-position: center;

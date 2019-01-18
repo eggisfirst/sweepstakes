@@ -14,7 +14,8 @@
           <div class="content_photo">
             <div class="photo_wrapper">
               <div class="photo">
-                <img :src="`${ item.headPortrait }`" alt="">
+                <img v-bind:src="`${item.headPortrait}`==='undefined'? awardNoPhoto:`${item.headPortrait}`" alt="">
+                <!-- <img src="../assets/image/awardNoPhoto.jpeg" alt="" class="img"> -->
               </div>
             </div>
             <div class="delete_icon" 
@@ -51,7 +52,8 @@ export default {
       allPage: 0,
       nowPage: 1,
       award: {},
-      userIds: []
+      userIds: [],
+      awardNoPhoto: '/static/image/awardNoPhoto.jpeg'
     }
   },
   computed: {

@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item, index) in list" :key="index">
         <div class="content_photo">
-          <img :src="`${item.headPortrait}`" alt="" class="img">
+          <img v-bind:src="`${item.headPortrait}`==='undefined'? awardNoPhoto:`${item.headPortrait}`" alt="" class="img">
           <div class="photo_wrapper">
             <div class="photo">
               <!-- <img src="../assets/image/photo.jpeg" alt=""> -->
@@ -23,7 +23,8 @@ import Vuex,{ mapMutations, mapState } from 'vuex'
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      awardNoPhoto: '/static/image/awardNoPhoto.jpeg'
     }
   },
   computed: {
