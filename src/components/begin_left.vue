@@ -8,7 +8,7 @@
     <div class="left_content">
       <div class="left_content_bg">
         <!-- <img :src="`${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
-        <!-- <img :src="'https://derucci.net/api/' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
+        <!-- <img :src="'http://10.12.0.62:8082/' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
         <img :src="'http://10.11.8.207:8099/' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}">
 
       </div>

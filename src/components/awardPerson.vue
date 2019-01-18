@@ -67,23 +67,17 @@ export default {
       width: 18%;
       margin-top: 3vw;
       margin-bottom: 2vw;
-       @-webkit-keyframes right{
-            0%{
-              -webkit-transform: scale(1);
-            }
-            // 25%{
-            //   -webkit-transform: scale(1.1);
-            // }
-            50%{
-              -webkit-transform: scale(1.2);
-            }
-            // 75%{
-            //   -webkit-transform: scale(1.1);
-            // }
-            100%{
-                -webkit-transform: scale(1);
-            }
+        @keyframes right {
+        0%{
+          transform:scale(1)
         }
+        50%{
+          transform:scale(1.2)
+        }
+        100%{
+          transform:scale(1)
+        }
+      }
       .content_photo{
         position: relative;
         width: 100%;
