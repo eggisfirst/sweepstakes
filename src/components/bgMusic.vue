@@ -29,19 +29,19 @@ export default {
     })
   },
   watch: {
-    awardContent() {
-      this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/begin.mp3'
-    },
+    // awardContent() {
+    //   this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/begin.mp3'
+    // },
     awardName() {
       if(this.awardName) {
         this.autoPlay()
       }
     },
-    awardPerson() {
-      if(this.awardPerson) {
-        this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/success.mp3'
-      }
-    }
+    // awardPerson() {
+    //   if(this.awardPerson) {
+    //     this.bgMusic = 'https://derucci.net/web/2019eveningParty/media/success.mp3'
+    //   }
+    // }
   },
   mounted() {
     this.$refs.contorls.style.animationPlayState = 'paused'

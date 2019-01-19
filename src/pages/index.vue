@@ -2,7 +2,7 @@
   <div class="home">
     <bg-start/>
     <bg-music/>
-    <div class="title">
+    <div class="title" v-show="awardPerson">
       <img src="../assets/image/topBar.png" alt="">
     </div>
     <div class="viaContainer" v-show="beginLock">
@@ -12,7 +12,7 @@
       v-bind:css="false"
       v-on:before-enter="contBeforeEnter"
       v-on:enter="contEnter"
-      v-on:leave="contLeave">
+      >
       <div class="content" v-show="awardContent">
         <div class="standBy" v-show="!beginContent">
           <div class="logo"></div>
@@ -22,14 +22,14 @@
         <begin-page  v-show="beginContent"/>
       </div>
     </transition>
-      <transition 
+      <!-- <transition 
         enter-active-class="animated fadeInUpBig"
         leave-active-class="animated fadeOut"
-        v-show="awardPerson">
-      <div class="award_person" v-show="awardPerson">
+        v-show="awardPerson"> -->
+      <div class="award_person" v-show="!awardPerson">
         <award-person />
       </div>
-    </transition>
+    <!-- </transition> -->
     <div class="clean_components" v-show="emptyShow">
       <clean-data/>
     </div>
@@ -139,13 +139,13 @@ export default {
         if(_key === 32){
           // this.Lottery = false
           this.setBeginLock(false)
-          this.setAwardPerson(true)
-          setTimeout(() => {
-            this.setAwardPerson(false)
-          }, 3000);
+          // this.setAwardPerson(true)
+          // setTimeout(() => {
+          //   this.setAwardPerson(false)
+          // }, 3000);
            setTimeout(() => {
             this.setAwardContent(true)
-          }, 3200);
+          }, 1000);
         }
       }
     },
@@ -252,10 +252,10 @@ export default {
     }
   }
   .award_person{
-    position: absolute;
-    left: 16%;
-    top: 22%;
-    width: 68%;
+    // position: absolute;
+    // left: 16%;
+    // top: 22%;
+    width: 100%;
   }
   .clean_components {
     position: absolute;

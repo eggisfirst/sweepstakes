@@ -1,7 +1,7 @@
 const state = {
   beginLock: false,
   awardContent: true,
-  awardPerson: false,
+  awardPerson: true,
   emptyShow: false
 }
 

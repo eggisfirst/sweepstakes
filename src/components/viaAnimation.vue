@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="bubble-wrap">
-      <div 
+      <!-- <div 
         v-for="(item, index) in imgArr" :key="index"  
         class="bubble"
         :style="{'backgroundImage': `url(${item.headPortrait})`}">
-      </div>
+      </div> -->
     </div>
 </div>
 </template>

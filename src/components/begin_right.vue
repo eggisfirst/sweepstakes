@@ -7,26 +7,24 @@
     <div class="right_content">
       <ul>
         <li 
-          :style="{'width':`${liWidth}`}"
           v-for="(item, index) in list" :key="index" 
-          @mouseover="delete_show(index)"
-          @mouseout="delete_hide(index)">
+            @mouseover="delete_show(index)"
+            @mouseout="delete_hide(index)">
           <div class="content_photo">
-            <div class="photo_wrapper">
-              <div class="photo">
-                <img v-bind:src="`${item.headPortrait}`==='undefined'? awardNoPhoto:`${item.headPortrait}`" alt="">
-                <!-- <img src="../assets/image/awardNoPhoto.jpeg" alt="" class="img"> -->
-              </div>
-            </div>
-            <div class="delete_icon" 
-              v-show="isShow === index? true : false"
-              @click="deleteData(index)"></div>
+            <p class="content_dept" >{{ item.dept }}</p>
+            <p class="content_name" >{{ item.name }}</p>
+            <p class="content_num" >{{ item.number }}</p>
           </div>
-          <p class="content_name" :style="{'fontSize':`${fontSize}`}">{{ item.name }}</p>
-          <p class="content_num" :style="{'fontSize':`${fontSize}`}">{{ item.number }}</p>
+          <div class="delete_icon" 
+            v-show="isShow === index? true : false"
+            @click="deleteData(index)">
+          </div>
         </li>
       </ul>
     </div>
+    <div class="allLook" 
+      v-show="showTurnPage"
+      @click="showAllLook">全屏</div>
     <div class="control_page" v-show="showTurnPage">
       <turn-page :allPage='allPage' :page='changeNowPage'/>
     </div>
@@ -109,7 +107,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setAwardList', 'setEmptyShow', 'setDeleteNum']),
+    ...mapMutations(['setAwardList', 'setEmptyShow', 'setDeleteNum', 'setAwardPerson', 'setAwardContent']),
     //删除图标的显示隐藏
     delete_show(index) {
       this.isShow = index
@@ -123,16 +121,16 @@ export default {
     },
     //处理翻页数据
     setData() {
-      this.allPage = Math.ceil((this.awardList.length)/15)
+      this.allPage = Math.ceil((this.awardList.length)/10)
       if(this.allPage > 1) {
         this.showTurnPage = true
         if(this.nowPage >= 1 && this.nowPage < this.allPage){
-          let leftSide = (this.nowPage - 1)* 15 
-          let rightSide = leftSide + 15
+          let leftSide = (this.nowPage - 1)* 10 
+          let rightSide = leftSide + 10
           this.list = this.awardList.slice(leftSide,rightSide)
         }
         else if(this.nowPage > 1 && this.nowPage == this.allPage) {
-          let left_side = (this.nowPage - 1)* 15 + 1
+          let left_side = (this.nowPage - 1)* 10 + 1
           let right_side = this.awardList.length
           this.list = this.awardList.slice(left_side,right_side)
         }
@@ -150,8 +148,14 @@ export default {
         this.setDeleteNum(1)
       })
     },
+    //更改当前页面
     changeNowPage(value) {
       this.nowPage = value
+    },
+    //全屏
+    showAllLook() {
+      this.setAwardPerson(false)
+      this.setAwardContent(false)
     }
   }
 }
@@ -183,70 +187,64 @@ export default {
   .right_content{
     ul{
       width: 85%;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
       margin-top: 1.6vw;
-      li{
-        width: 20%;
-        padding-right: 10px;
-        .content_photo{
-          position: relative;
-          width: 100%;
-          height: 0;
-          padding-top: 100%;
-          border-radius: 100%;
-          background: rgba(219, 139, 0, 0.19);
-          margin-bottom: 8px;
-          .photo_wrapper{
-            border: 2px dotted #d78200;
-            width: 100%;
-            height: 0;
-            padding-top: 100%;
-            border-radius: 100%;
-            position: absolute;
-            left: 0;
-            top: -0.6%;
-            box-sizing: border-box;
-            .photo{
-              position: absolute;
-              top: 5%;
-              left: 5%;
-              width: 90%;
-              height: 0;
-              padding-top: 90%;
-              border-radius: 100%;
-              box-sizing: border-box;
-              border: 2px solid #e28902;
-              img{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-              }
-            }
-          }
-          .delete_icon{
-            background: url(../assets/image/delete_icon.png) no-repeat center;
-            background-size: 100% 100%;
-            width: 18%;
-            height: 18%;
-            position: absolute;
-            top: -1px;
-            right: -10px;
-            cursor: pointer;
-          }
-        }
-        .content_name, .content_num{
-          font-size: 14px;
-          color: #ffa926;
-          text-align: center;
-          line-height: calc(fontSize);
+      li:nth-child(odd){
+        .content_photo {
+          background-color:rgba(228, 181, 74, 0.1);
         }
       }
+      li{
+        width: 100%;
+        padding-right: 10px;
+        display: flex;
+        justify-content: space-between;
+        .content_photo{
+          box-sizing: border-box;
+          padding: 0 1vw;
+          width: 92%;
+          display: flex;
+          justify-content: space-between;
+
+          :nth-child(1) {
+            flex: 0.7;
+          }
+          :nth-child(2) {
+            flex: 0.3
+          }
+          :nth-child(3) {
+            flex: 0.2
+            
+          }
+          .content_name, .content_num, .content_dept{
+            font-size: 18px;
+            color: #ffa926;
+            // line-height: calc(fontSize);
+          }
+          }
+         .delete_icon{
+            background: url(../assets/image/delete_icon.png) no-repeat center;
+            background-size: 100% 100%;
+            width: 20px;
+            height: 20px;
+            margin-top: 5px;
+            cursor: pointer;
+          }
+      }
     }
+  }
+  .allLook {
+    position: absolute;
+    left: 0;
+    bottom: 5.6%;
+    width: 76px;
+    height: 30px;
+    background-color: rgba(60, 60, 60, 0.5);
+    border-radius: 15px;
+    border: solid 1px #000000;
+    color: rgba(255, 255, 255, 0.34);
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
   }
   .control_page{
     position: absolute;
