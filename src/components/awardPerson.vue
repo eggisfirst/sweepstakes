@@ -87,7 +87,7 @@ export default {
           this.list = this.awardList.slice(leftSide,rightSide)
         }
         else if(this.nowPage > 1 && this.nowPage == this.allPage) {
-          let left_side = (this.nowPage - 1)* 51 + 1
+          let left_side = (this.nowPage - 1)* 51 
           let right_side = this.awardList.length
           this.list = this.awardList.slice(left_side,right_side)
         }
