@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div class="allLook" 
-      v-show="showTurnPage"
+      v-show="isAllLook"
       @click="showAllLook">全屏</div>
     <div class="control_page" v-show="showTurnPage">
       <turn-page :allPage='allPage' :page='changeNowPage'/>
@@ -47,6 +47,7 @@ export default {
       liWidth: '',
       fontSize: '',
       showTurnPage: false,
+      isAllLook: false,
       allPage: 0,
       nowPage: 1,
       award: {},
@@ -102,6 +103,7 @@ export default {
         }else if(this.awardList.length === 0) {
           this.list = []
           this.showTurnPage = false
+          this.isAllLook = false
         }
       }
     }
@@ -122,6 +124,9 @@ export default {
     //处理翻页数据
     setData() {
       this.allPage = Math.ceil((this.awardList.length)/10)
+      if(this.allPage > 5) {
+        this.isAllLook = true
+      }
       if(this.allPage > 1) {
         this.showTurnPage = true
         if(this.nowPage >= 1 && this.nowPage < this.allPage){

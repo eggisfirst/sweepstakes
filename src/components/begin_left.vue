@@ -10,8 +10,8 @@
         <!-- <img :src="`${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
         <img :src="'http://10.12.0.62:8082/' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}">
         <!-- <img :src="'http://10.11.8.207:8099/' + `${ list.prizePicture }`" :style="{width: `${firstPWidth}%`}"> -->
-
       </div>
+      <div class="tips">* 图片仅供参考</div>
     </div>
     <div class="control_num">
       <button class="cut_down" @click="cutDown"></button>
@@ -132,6 +132,14 @@ export default {
   .left_content{
     width: 85%;
     margin: auto;
+    position: relative;
+    .tips {
+      color:#6b6b6b;
+      font-size: 14px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
     .left_content_bg{
       width: 250px;
       height: 250px;
