@@ -206,13 +206,13 @@ export default {
           justify-content: space-between;
 
           :nth-child(1) {
-            flex: 0.7;
+            flex: 0.5;
           }
           :nth-child(2) {
             flex: 0.3
           }
           :nth-child(3) {
-            flex: 0.2
+            flex: 0.25
             
           }
           .content_name, .content_num, .content_dept{
