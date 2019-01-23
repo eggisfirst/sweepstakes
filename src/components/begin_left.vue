@@ -141,11 +141,11 @@ export default {
       right: 0;
     }
     .left_content_bg{
-      width: 250px;
-      height: 250px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       margin: 0 auto;
-      margin-top: 2vw;
+      margin-top: 1vw;
       background-color: #e4b54a;
       text-align: center;
       display: flex;
@@ -162,7 +162,7 @@ export default {
   .control_num{
     width: 160px;
     margin: auto;
-    margin-top: 2vw;
+    margin-top: 1vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -207,7 +207,7 @@ export default {
     background: url(../assets/image/begin_icon.png) no-repeat center;
     background-size: 100% 100%;
     margin: auto;
-    margin-top: 2vw;
+    margin-top: 1vw;
     cursor: pointer;
   }
 }

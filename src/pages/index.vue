@@ -36,6 +36,9 @@
     <div class="footer" v-show="beginLock">
       <span>按空格键停止</span>
     </div>  
+    <div class="footerBg">
+      <img src="../assets/image/footerBg.png" alt="">
+    </div>
   </div>
 </template>
 
@@ -201,8 +204,8 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -250px;
-    margin-left: -350px;
+    margin-top: -150px;
+    margin-left: -450px;
   }
   .content {
     width: 68%;
@@ -271,6 +274,20 @@ export default {
     font-size: 24px;
     text-align: center;
     margin-left: -75px; 
+  }
+  .footerBg {
+    // background: url(../assets/image/footerBg.png) no-repeat center;
+    // width: 100%;
+    // height: 100px;
+    // background-size: 100% 100%;;
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    z-index: -1;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 

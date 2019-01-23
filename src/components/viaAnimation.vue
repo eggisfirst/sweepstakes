@@ -6,6 +6,13 @@
         class="bubble"
         :style="{'backgroundImage': `url(${item.headPortrait})`}">
       </div> -->
+      
+        <div 
+          v-for="(item, index) in imgArr" :key="index"  
+          class="bubble"
+          style='color: #fff'>
+          {{ item.name }}
+        </div>
     </div>
 </div>
 </template>
@@ -13,6 +20,7 @@
 <script>
 import Vuex,{ mapMutations, mapState } from 'vuex'
 import {IndexModel} from '../utils/index'
+import animation from 'animate.css'
 const indexModel = new IndexModel()
 
 
@@ -41,7 +49,7 @@ export default {
   created() {
     // this._getData()
     // this.getAwards()
-    // this.getAllUser()
+    this.getAllUser()
   },
   methods: {
     //获取抽奖用户列表
@@ -58,7 +66,7 @@ export default {
     },
     getSomeData() {
       this.img.forEach((item,index) => {
-        if(index < 101) {
+        if(index < 201) {
           this.imgArr.push(item)
         }
       });
@@ -79,8 +87,18 @@ body {
 }
 
 @keyframes move {
+  10%{
+    opacity: 0.8;
+  }
+  20%{
+    opacity: 0.1;
+  }
+  25%{
+    opacity: 0;
+  }
   100% {
-    transform: translate3d(-300px, -40px, 2000px);
+    color: #000;
+    transform: translate3d(-450px, -50px, 2000px);
   }
 }
 .container {
@@ -92,26 +110,27 @@ body {
 }
 .bubble-wrap {
   margin: auto;
-  width: 30px;
-  height: 30px;
+  width: 100px;
+  height: 100px;
   transform-style: preserve-3d;
   transform-origin: center center;
-  perspective: 600px;
+  perspective: 660px;
 }
 .bubble {
-  position: absolute;
+   position: absolute;
   opacity: 1;
-  border-radius: 50%;
-  animation: move 2s infinite;
+  // border-radius: 50%;
+  animation: move 8s infinite;
 }
 
-@for $i from 1 through 100 {
+@for $i from 1 through 200 {
   .bubble:nth-child(#{$i}){
-     $size: random(50)+px;
+     $size: random(100)+px;
+     font-size: 1vw;
      height: $size;
      width: $size;
-     animation-delay: -$i * .2s;
-     transform: translate3d( (random(200) * 1px),  (random(100) * 1px), (random(200) * 1px));
+     animation-delay: -$i * .2s ;
+     transform: translate3d( (random(400) * 1px),  (random(200) * 1px), (random(100) * 1px));
     //  background: hsl( random(360) , 70%, 50%);
      background-size: contain;
      background-position: center;
@@ -119,6 +138,17 @@ body {
   }
  
 }
+// @keyframes move {
+//   0%{
+//     opacity: 1;
+//   }
+//   50%{
+//     opacity: 0.8;
+//   }
+//   100%{
+//     opacity: 0;
+//   }
+// }
 
 </style>
 

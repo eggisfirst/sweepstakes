@@ -106,7 +106,7 @@ export default {
   ul{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding: 50px 31px;
     li {
@@ -201,10 +201,10 @@ export default {
     bottom: 3.2%;
     width: 66px;
     height: 25px;
-    background-color: rgba(60, 60, 60, 0.5);
+    background-color: rgba(253, 211, 16, 1);
     border-radius: 15px;
     border: solid 1px #000000;
-    color: rgba(255, 255, 255, 0.34);
+    color: rgba(0, 0, 0, 1);
     text-align: center;
     line-height: 25px;
     cursor: pointer;
